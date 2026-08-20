@@ -77,6 +77,8 @@ function buildVooProxy(voo: HistorySeries | undefined, spy: HistorySeries | unde
 function SecuritySearch({ id, value, market, directory, onSelect }: { id: string; value: Security | null; market: MarketFilter; directory: Security[]; onSelect: (item: Security) => void }) {
   const [draft, setDraft] = useState("");
   const [open, setOpen] = useState(false);
+  // Keep the editable label synchronized when a result is selected externally.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setDraft(value ? `${value.symbol} — ${value.name}` : ""), [value]);
   const matches = useMemo(() => {
     const query = draft.trim().toLowerCase();
@@ -184,9 +186,13 @@ export default function PlanPage() {
 
   useEffect(() => {
     const meta = MARKET_META[market];
+    // Market changes intentionally reset market-specific calculator defaults.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFxRate(market === "CN" ? 1 : (fxSeries?.points.at(-1)?.[1] ?? meta.defaultFx));
     setLotSize(meta.lotSize);
-  }, [market, fxSeries?.lastDate]);
+  }, [market, fxSeries]);
+  // Clamp an outdated start date after the selected history series changes.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { if (historySeries && (!historyStart || historyStart < historySeries.firstDate)) setHistoryStart(historySeries.firstDate); }, [historySeries, historyStart]);
 
   function choose(item: Security) { setSelected(item); setMarketFilter(item.market); setProxyEnabled(false); }
