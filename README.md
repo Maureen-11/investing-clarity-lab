@@ -1,18 +1,116 @@
-# Jiantou Academy public beta
+# Investing Clarity Lab / 简投学堂
 
-A static, multilingual public beta of Jiantou Academy.
+> 面向金融初学者的证据优先型长期投资研究工具。先算清投入，再把计划放进真实历史。
 
-## What this release includes
+[在线使用](https://maureen-11.github.io/investing-clarity-lab/) · [数据说明](./DATA_SOURCES.md) · [安全政策](./SECURITY.md)
 
-- Simplified Chinese (`zh-Hans`), Traditional Chinese (`zh-Hant`) and English.
-- A contribution-calendar and principal calculator.
-- Published exchange closures for the explicitly listed years; later years are labelled estimates.
-- No accounts, analytics, advertising trackers or upload of user inputs.
+**English summary:** Investing Clarity Lab is an evidence-first, browser-based DCA research tool for beginners. It separates contributions, market history, fees, inflation and FX effects instead of presenting a single assumed annual return as a promise.
 
-## Data boundary
+## 1. 项目解决什么问题
 
-This public beta intentionally contains no Yahoo Finance market history, live quotes or historical-return simulations. Market-data features remain disabled until written public-display and redistribution permission is obtained from a licensed provider.
+很多定投计算器要求用户先填写一个“预计年化收益率”，再假设未来每年都稳定获得这个数字。这种方式容易让初学者忽略：
 
-## Disclaimer
+- 每日、每月和每年定投对应的交易次数不同，周末与休市日不能计入交易；
+- 历史平均收益不代表每年稳定上涨，最终盈利也不代表过程没有大幅回撤；
+- 产品费率、购买渠道费用、人民币汇率和通货膨胀会分别影响结果；
+- ETF、指数基金与个股不能使用同一套长期结论；
+- 没有足够、可复核数据时，工具应该明确留空，而不是编造收益。
 
-For education and research only. Nothing on the site is investment, tax or legal advice.
+简投学堂把“计划本金”“历史路径”“风险过程”“费用与购买力”分开呈现，帮助用户理解数据能回答什么、不能回答什么。它不预测未来，也不提供买卖建议。
+
+## 2. 主要功能
+
+- **中美港证券检索：**检索 A 股、港股、美股及 ETF，选择证券后自动联动交易市场。
+- **定投日历：**支持每日、每月、每年投入；已公布年份使用交易所休市安排，超出覆盖期明确标为估算。
+- **本金统计：**计算日历天数、交易日、实际投入次数、分期本金、初始资金和总投入。
+- **历史回放：**对已具备复权历史的 QQQ、VOO、SPY、VTI、VT、SCHX 生成滚动起点和指定起点结果。
+- **费用与购买力：**分开显示产品费率拖累、历史人民币汇率换算、CPI 购买力和固定情景。
+- **图表：**展示账户本金与价值、产品 100 点增长、回撤过程、自然年度收益和恢复时间。
+- **证据边界：**证券目录“能搜到”不等于拥有足够历史；个股不会仅凭存续价格生成 ETF 式长期结论。
+
+## 3. 安装方式
+
+### 环境要求
+
+- Node.js `>= 22.13.0`
+- npm（随 Node.js 安装）
+- Git
+
+### 本地运行
+
+```bash
+git clone https://github.com/Maureen-11/investing-clarity-lab.git
+cd investing-clarity-lab
+npm ci
+npm run dev
+```
+
+终端会显示本地访问地址。默认情况下通常是 `http://localhost:3000/`。
+
+### 验证与构建
+
+```bash
+npm run lint
+npm test
+npm run build:pages
+```
+
+- `npm test` 会先执行应用构建，再运行交易日、汇率、CPI、历史回放和页面边界测试。
+- `npm run build:pages` 会为 GitHub Pages 的 `/investing-clarity-lab` 子路径生成 `out/` 静态文件。
+- 如需生成不带子路径的静态版本，运行 `npm run build:mainland`。
+
+本地 Sites 托管配置不进入版本库。如确有需要，可复制 `.openai/hosting.example.json` 为 `.openai/hosting.json`，再填写自己的项目配置；不要提交该文件。
+
+## 4. 使用方法
+
+1. 在首页进入“定投研究工具”。
+2. 搜索 ETF、指数基金或股票代码/名称；市场会自动切换到美股、A 股或港股。
+3. 设置计划开始日期、每日/月度/年度频率、每次投入、初始资金和投入年限。
+4. 选择历史或固定汇率、历史 CPI 或固定通胀情景，以及碎股或整股/整手口径。
+5. 先阅读“总投入”和“投入次数”，再查看历史最不利、排序中间和最有利实际起点。
+6. 结合回撤、恢复时间、购买力和费用拖累理解结果，不把历史排序当成未来概率。
+
+## 5. 输入输出示例
+
+以下示例由当前计算引擎和仓库数据实际运行生成，不是手工估算。
+
+### 输入
+
+| 参数 | 值 |
+|---|---:|
+| 标的 | VOO |
+| 计划开始日 | 2011-01-03 |
+| 频率 | 每月 |
+| 每次投入 | ¥1,000 |
+| 初始资金 | ¥10,000 |
+| 年限 | 15 年 |
+| 产品费率 | 0.03% |
+| 汇率 / 通胀 | 历史 USD/CNY / 历史 CPI |
+| 交易单位 | 理论碎股 |
+
+### 输出
+
+| 结果 | 数值 |
+|---|---:|
+| 定投次数 / 总投入 | 180 次 / ¥190,000 |
+| 日历天数 / 估算交易日 | 5,479 / 3,780 |
+| 历史最不利起点期末金额 | ¥659,511 |
+| 历史排序中间起点期末金额 | ¥721,625 |
+| 历史最有利起点期末金额 | ¥739,210 |
+| 排序中间路径的起点购买力 | ¥561,587 |
+| 排序中间路径的费率拖累估算 | ¥2,266 |
+| VOO 样本期最大回撤 | -33.99% |
+
+本次滚动回放共有 11 个完整 15 年起点；排序中间路径为 `2011-01-03—2026-01-05`。ETF 历史截止 `2026-07-27`，宏观数据截止 `2026-08-18`。更新数据后，样本数和结果会变化。
+
+## 数据、隐私与许可边界
+
+- 网站使用静态数据快照，不是实时行情终端，也没有后台每日自动更新服务。
+- ETF 复权历史来自 Yahoo Finance Chart API；仓库**不声称已经获得公开展示或再分发许可**。保留来源说明并不等于获得授权，公开使用者需要自行评估并取得所需许可。
+- 证券目录、汇率、CPI 和基金资料的来源及日期见 [DATA_SOURCES.md](./DATA_SOURCES.md)。
+- 当前公开站没有账号系统、广告或分析追踪；计算在浏览器中完成，不上传用户输入。
+- 本项目仅供教育与研究，不构成投资、税务、保险或法律建议。
+
+## License
+
+应用源码使用 [MIT License](./LICENSE)。第三方数据、名称、商标和资料不因源码许可证而获得重新许可，其权利仍归各自权利人所有。

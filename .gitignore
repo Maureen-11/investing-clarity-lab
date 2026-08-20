@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+/.pnpm-store/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/.vinext/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# local hosting binding and private preview material
+/.openai/hosting.json
+/preview-assets/
+/scripts/build-brand-assets.mjs
+/scripts/capture-site-preview.mjs
+/scripts/make-official-logo-preview.mjs
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
+*.tsbuildinfo
+/dist/
+/.wrangler/
+/outputs/
+/work/
+/public-release/
