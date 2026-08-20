@@ -22,6 +22,7 @@
 .welcome-page{background:var(--paper)}
 .welcome-hero{min-height:calc(100vh - 76px);padding:70px 5vw;display:grid;grid-template-columns:1.08fr .72fr;gap:8vw;align-items:center;background:radial-gradient(circle at 83% 15%,#dcefe7 0,transparent 28%),linear-gradient(135deg,#fffdfa 0%,#f8f2e8 100%)}
 .welcome-copy h1{font-family:"Noto Serif SC",serif;font-size:clamp(54px,6.2vw,94px);line-height:1.08;font-weight:500;margin:24px 0}
+.welcome-copy h1 .hero-title-line{display:inline-block;white-space:nowrap}
 .welcome-copy h1 em{color:var(--green);font-style:normal}
 .welcome-lede{font-family:"Noto Serif SC",serif;font-size:21px;color:#52687a;line-height:1.9;max-width:680px}
 .welcome-actions{display:flex;align-items:center;gap:28px}
@@ -106,7 +107,7 @@
 }
 @media(max-width:700px){
   .welcome-hero{min-height:0;padding:52px 20px}
-  .welcome-copy h1{font-size:48px}
+  .welcome-copy h1{font-size:clamp(34px,10.2vw,48px)}
   .welcome-lede{font-size:16px}
   .welcome-note{padding:28px;border-radius:23px}
   .welcome-note strong{font-size:22px}

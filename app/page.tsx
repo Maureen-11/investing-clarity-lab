@@ -46,7 +46,7 @@ export default function Home() {
       <section className="welcome-hero" id="top">
         <div className="welcome-copy">
           <p className="eyebrow"><span/> 给第一次认真看待投资的你</p>
-          <h1>从每天10元开始，<br/>看懂你的第一笔<br/><em>长期投资。</em></h1>
+          <h1><span className="hero-title-line">从每天10元开始，</span><br/>看懂你的第一笔<br/><em>长期投资。</em></h1>
           <p className="welcome-lede">不急着猜收益，先算清会投入多少、可能经历什么。投资不是为了赢过谁，而是让未来多一点选择。</p>
           <div className="welcome-actions">
             <button className="primary-button" onClick={() => router.push("/plan")}>帮我算一笔 <span>→</span></button>
