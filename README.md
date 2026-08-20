@@ -1,4 +1,4 @@
- Investing Clarity Lab / 简投学堂
+# Investing Clarity Lab / 简投学堂
 
 > 面向金融初学者的证据优先型长期投资研究工具。先算清投入，再把计划放进真实历史。
 
@@ -6,7 +6,7 @@
 
 English summary: Investing Clarity Lab is an evidence-first, browser-based DCA research tool for beginners. It separates contributions, market history, fees, inflation and FX effects instead of presenting a single assumed annual return as a promise.
 
-1. 项目解决什么问题
+## 1. 项目解决什么问题
 
 很多定投计算器要求用户先填写一个“预计年化收益率”，再假设未来每年都稳定获得这个数字。这种方式容易让初学者忽略：
 
@@ -18,7 +18,7 @@ English summary: Investing Clarity Lab is an evidence-first, browser-based DCA r
 
 简投学堂把“计划本金”“历史路径”“风险过程”“费用与购买力”分开呈现，帮助用户理解数据能回答什么、不能回答什么。它不预测未来，也不提供买卖建议。
 
-2. 主要功能
+## 2. 主要功能
 
 - 中美港证券检索：检索 A 股、港股、美股及 ETF，选择证券后自动联动交易市场。
 - 定投日历：支持每日、每月、每年投入；已公布年份使用交易所休市安排，超出覆盖期明确标为估算。
@@ -28,15 +28,15 @@ English summary: Investing Clarity Lab is an evidence-first, browser-based DCA r
 - 图表：展示账户本金与价值、产品 100 点增长、回撤过程、自然年度收益和恢复时间。
 - 证据边界：证券目录“能搜到”不等于拥有足够历史；个股不会仅凭存续价格生成 ETF 式长期结论。
 
-3. 安装方式
+## 3. 安装方式
 
- 环境要求
+### 环境要求
 
 - Node.js `>= 22.13.0`
 - npm（随 Node.js 安装）
 - Git
 
- 本地运行
+### 本地运行
 
 ```bash
 git clone https://github.com/Maureen-11/investing-clarity-lab.git
@@ -47,7 +47,7 @@ npm run dev
 
 终端会显示本地访问地址。默认情况下通常是 `http://localhost:3000/`。
 
- 验证与构建
+### 验证与构建
 
 ```bash
 npm run lint
@@ -93,7 +93,7 @@ npm run build:pages
 | 汇率 / 通胀 | 历史 USD/CNY / 历史 CPI |
 | 交易单位 | 理论碎股 |
 
- 输出
+### 输出
 
 | 结果 | 数值 |
 |---|---:|
@@ -108,7 +108,7 @@ npm run build:pages
 
 本次滚动回放共有 11 个完整 15 年起点；排序中间路径为 `2011-01-03—2026-01-05`。ETF 历史截止 `2026-07-27`，宏观数据截止 `2026-08-18`。更新数据后，样本数和结果会变化。
 
- 数据、隐私与许可边界
+## 数据、隐私与许可边界
 
 - 网站使用静态数据快照，不是实时行情终端，也没有后台每日自动更新服务。
 - ETF 复权历史来自 Yahoo Finance Chart API；仓库**不声称已经获得公开展示或再分发许可**。保留来源说明并不等于获得授权，公开使用者需要自行评估并取得所需许可。
@@ -116,6 +116,7 @@ npm run build:pages
 - 当前公开站没有账号系统、广告或分析追踪；计算在浏览器中完成，不上传用户输入。
 - 本项目仅供教育与研究，不构成投资、税务、保险或法律建议。
 
- License
+## License
 
 应用源码使用 [MIT License](./LICENSE)。第三方数据、名称、商标和资料不因源码许可证而获得重新许可，其权利仍归各自权利人所有。
+
