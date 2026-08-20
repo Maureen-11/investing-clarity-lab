@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[28270,["/jiantou-academy/_next/static/chunks/0os4r2b_q-rny.js"],"default"]
-3:I[7640,["/jiantou-academy/_next/static/chunks/0os4r2b_q-rny.js"],"default"]
+2:I[39756,["/investing-clarity-lab/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
+3:I[37457,["/investing-clarity-lab/_next/static/chunks/0dbhjjzl8qfwv.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"q2DlI8eSJm4bTDI0V7yzu"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"dPH9BMIvtnVba35yset6D"}
