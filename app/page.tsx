@@ -46,7 +46,7 @@ export default function Home() {
       <section className="welcome-hero" id="top">
         <div className="welcome-copy">
           <p className="eyebrow"><span/> 给第一次认真看待投资的你</p>
-          <h1><span className="hero-title-line">从每天10元开始，</span><br/>看懂你的第一笔<br/><em>长期投资。</em></h1>
+          <h1><span className="opening-line">从每天10元开始，</span><br/><span className="title-line">看懂你的第一笔</span><br/><em>长期投资。</em></h1>
           <p className="welcome-lede">不急着猜收益，先算清会投入多少、可能经历什么。投资不是为了赢过谁，而是让未来多一点选择。</p>
           <div className="welcome-actions">
             <button className="primary-button" onClick={() => router.push("/plan")}>帮我算一笔 <span>→</span></button>
@@ -63,7 +63,7 @@ export default function Home() {
           <span className="note-label">先别急着买</span>
           <p>你不需要先找到“最好的产品”。</p>
           <p>先知道这笔钱能放多久，市场下跌时你可能看到什么，以及费用会慢慢拿走多少。</p>
-          <strong>工具给你的不是答案，<br/>而是一套更清醒的判断方法。</strong>
+          <strong><span className="note-claim">工具给你的不是答案，</span> <span className="note-method">而是一套更清醒的判断方法。</span></strong>
           <div className="note-signature">简投学堂 · 写给普通投资者</div>
         </aside>
       </section>
@@ -117,4 +117,3 @@ export default function Home() {
     </main>
   );
 }
-

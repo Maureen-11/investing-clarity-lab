@@ -20,18 +20,21 @@
 
 /* Beginner home */
 .welcome-page{background:var(--paper)}
-.welcome-hero{min-height:calc(100vh - 76px);padding:70px 5vw;display:grid;grid-template-columns:1.08fr .72fr;gap:8vw;align-items:center;background:radial-gradient(circle at 83% 15%,#dcefe7 0,transparent 28%),linear-gradient(135deg,#fffdfa 0%,#f8f2e8 100%)}
+.welcome-hero{min-height:calc(100vh - 76px);padding:70px 5vw;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(440px,.9fr);gap:clamp(34px,5vw,76px);align-items:center;background:radial-gradient(circle at 83% 15%,#dcefe7 0,transparent 28%),linear-gradient(135deg,#fffdfa 0%,#f8f2e8 100%)}
 .welcome-copy h1{font-family:"Noto Serif SC",serif;font-size:clamp(54px,6.2vw,94px);line-height:1.08;font-weight:500;margin:24px 0}
-.welcome-copy h1 .hero-title-line{display:inline-block;white-space:nowrap}
+.welcome-copy h1 .opening-line,.welcome-copy h1 .title-line{display:inline-block;white-space:nowrap}
+.welcome-copy h1 .opening-line{font-size:.84em}
+.welcome-copy h1 .title-line{font-size:.92em}
 .welcome-copy h1 em{color:var(--green);font-style:normal}
 .welcome-lede{font-family:"Noto Serif SC",serif;font-size:21px;color:#52687a;line-height:1.9;max-width:680px}
 .welcome-actions{display:flex;align-items:center;gap:28px}
 .welcome-actions>a{margin-top:26px;color:var(--green);font-weight:700;font-size:14px}
-.welcome-note{position:relative;background:var(--navy);color:#fff;border-radius:32px;padding:46px;box-shadow:0 30px 80px rgba(7,35,63,.22)}
+.welcome-note{position:relative;width:100%;max-width:620px;justify-self:stretch;background:var(--navy);color:#fff;border-radius:32px;padding:42px;box-shadow:0 30px 80px rgba(7,35,63,.22)}
 .welcome-note:before{content:"";position:absolute;right:0;top:0;width:150px;height:150px;border-radius:0 32px 0 150px;background:rgba(108,213,177,.1)}
 .note-label{display:inline-block;color:var(--mint);font-size:12px;font-weight:700;letter-spacing:.12em;margin-bottom:32px}
 .welcome-note p{font-family:"Noto Serif SC",serif;font-size:20px;line-height:1.8;color:#d4e1e9}
-.welcome-note strong{display:block;font-family:"Noto Serif SC",serif;font-size:27px;line-height:1.55;color:#9ce3cc;margin-top:34px}
+.welcome-note strong{display:block;font-family:"Noto Serif SC",serif;font-size:27px;line-height:1.55;color:#9ce3cc;margin-top:34px;line-break:strict;word-break:normal;overflow-wrap:normal;text-wrap:pretty}
+.welcome-note strong .note-claim,.welcome-note strong .note-method{display:block;white-space:nowrap}
 .note-signature{border-top:1px solid rgba(255,255,255,.16);margin-top:36px;padding-top:20px;color:#a8c0d1;font-size:12px}
 .start-paths,.beginner-questions{padding:90px 5vw}
 .start-paths{background:var(--cream)}
@@ -141,4 +144,3 @@
 
 @media(max-width:1050px){.metric-grid{grid-template-columns:repeat(2,1fr)}.chart-grid{grid-template-columns:1fr}.chart-card.wide{grid-column:auto}.fee-impact{grid-template-columns:1fr}.proxy-box{grid-template-columns:1fr}.annual-chart{grid-template-columns:1fr}}
 @media(max-width:700px){.outcome-focus>strong{font-size:38px}.outcome-focus>div,.metric-grid,.specific-result{grid-template-columns:1fr}.chart-heading,.chart-card-head,.switch-row,.history-controls{align-items:flex-start;flex-direction:column}.chart-heading{display:flex}.chart-card{padding:17px}.account-chart svg,.line-chart svg{height:170px}.date-preview{align-items:flex-start;flex-direction:column;gap:8px}.fund-strip{grid-template-columns:1fr}.proxy-box{grid-template-columns:1fr}.compare-table>div{grid-template-columns:1.2fr .8fr .8fr}.section-title>span{display:block;margin-top:10px}.annual-chart{padding:16px}.annual-bars{overflow-x:auto}.annual-bars>div{min-width:28px}}
-

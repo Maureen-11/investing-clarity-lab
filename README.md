@@ -1,5 +1,7 @@
 # Investing Clarity Lab / 简投学堂
 
+[中文版](./README.md) · [English](./README.en.md)
+
 > 面向金融初学者的证据优先型长期投资研究工具。先算清投入，再把计划放进真实历史。
 
 [在线使用](https://maureen-11.github.io/investing-clarity-lab/) · [数据说明](./DATA_SOURCES.md) · [安全政策](./SECURITY.md)
@@ -119,4 +121,3 @@ npm run build:pages
 ## License
 
 应用源码使用 [MIT License](./LICENSE)。第三方数据、名称、商标和资料不因源码许可证而获得重新许可，其权利仍归各自权利人所有。
-
