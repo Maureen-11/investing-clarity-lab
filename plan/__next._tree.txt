@@ -1,2 +1,2 @@
-:HL["/investing-clarity-lab/_next/static/chunks/0y1f3053gjlpr.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"plan","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"bluCmBTTdCWJT2ls6Di7P"}
+:HL["/investing-clarity-lab/_next/static/chunks/1aeiycwj5t45r.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"plan","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"e4vHK0VDfEFyQiwBg8h_7"}
