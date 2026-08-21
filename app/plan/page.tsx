@@ -31,7 +31,7 @@ import {
 
 const PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-type Insight = { title: string; summary: string; risks: string[]; role: string };
+type Insight = { title: string; titleLines: [string, string]; summary: string; risks: string[]; role: string };
 type HistoryMode = "rolling" | "specific";
 
 const FUND_DETAILS: Record<string, FundDetail> = {
@@ -44,12 +44,12 @@ const FUND_DETAILS: Record<string, FundDetail> = {
 };
 
 const ASSET_INSIGHTS: Record<string, Insight> = {
-  "US:QQQ": { title: "QQQ不是“整个美股”，而是偏成长的大型非金融公司组合", summary: "它跟踪纳斯达克100指数，长期表现很大程度受大型科技与成长公司驱动。看它时，重点不只在收益，也在集中度和估值收缩时的回撤。", risks: ["行业与头部公司集中度较高", "估值收缩时回撤可能更深", "不包含金融公司，不能代表美股全市场"], role: "更像成长风格配置，不是完整市场基准" },
-  "US:VOO": { title: "VOO是美国大型股入口，不等于覆盖全部美国公司", summary: "它跟踪标普500指数。低费率和广泛持股适合用来理解核心配置，但市值加权仍会把较多权重交给最大公司。", risks: ["只覆盖美国大型公司", "头部公司权重会随市值上升", "短期仍可能出现显著回撤"], role: "常被用作美国大型股核心配置" },
-  "US:SPY": { title: "SPY与VOO跟踪同一指数，但用途和持有成本并不相同", summary: "SPY历史更长且交易活跃，适合研究长历史和高流动性；长期持有时还要比较费用率、价差与产品结构。", risks: ["仍只覆盖美国大型公司", "费用率高于部分同指数ETF", "高流动性不代表长期持有成本最低"], role: "长历史与高流动性是它的主要特点" },
-  "US:VTI": { title: "VTI覆盖美国大中小公司，但仍是一项单一国家配置", summary: "它比标普500覆盖面更广，能观察美国全市场；市值加权意味着大型公司仍决定大部分波动。", risks: ["地域集中于美国", "大型公司仍占主要权重", "小盘股覆盖不会消除系统性风险"], role: "用于观察美国全市场，而不是全球市场" },
-  "US:VT": { title: "VT把多个国家放在一只ETF里，但全球分散不等于平均分配", summary: "它按市值覆盖全球股票，国家权重会随市场规模变化。它降低单一国家依赖，但全球危机时仍可能一起下跌。", risks: ["美国市场仍可能占较大权重", "包含汇率与不同市场制度风险", "全球市场可能同步回撤"], role: "更接近一只全球股票底仓" },
-  "US:SCHX": { title: "SCHX覆盖约750家美国大型公司，范围广于标普500但不是全市场", summary: "它跟踪道琼斯美国大型股总市场指数，发行方定位是低成本大型股核心工具。和VOO相近，不代表持仓与收益路径完全相同。", risks: ["仍集中于美国大型公司", "不覆盖完整的小盘股与海外市场", "与VOO相似不等于完全可替代"], role: "低成本美国大型股核心配置候选" },
+  "US:QQQ": { title: "QQQ不是“整个美股”，而是偏成长的大型非金融公司组合", titleLines: ["QQQ不是“整个美股”，", "而是偏成长的大型非金融公司组合"], summary: "它跟踪纳斯达克100指数，长期表现很大程度受大型科技与成长公司驱动。看它时，重点不只在收益，也在集中度和估值收缩时的回撤。", risks: ["行业与头部公司集中度较高", "估值收缩时回撤可能更深", "不包含金融公司，不能代表美股全市场"], role: "更像成长风格配置，不是完整市场基准" },
+  "US:VOO": { title: "VOO是美国大型股入口，不等于覆盖全部美国公司", titleLines: ["VOO是美国大型股入口，", "不等于覆盖全部美国公司"], summary: "它跟踪标普500指数。低费率和广泛持股适合用来理解核心配置，但市值加权仍会把较多权重交给最大公司。", risks: ["只覆盖美国大型公司", "头部公司权重会随市值上升", "短期仍可能出现显著回撤"], role: "常被用作美国大型股核心配置" },
+  "US:SPY": { title: "SPY与VOO跟踪同一指数，但用途和持有成本并不相同", titleLines: ["SPY与VOO跟踪同一指数，", "但用途和持有成本并不相同"], summary: "SPY历史更长且交易活跃，适合研究长历史和高流动性；长期持有时还要比较费用率、价差与产品结构。", risks: ["仍只覆盖美国大型公司", "费用率高于部分同指数ETF", "高流动性不代表长期持有成本最低"], role: "长历史与高流动性是它的主要特点" },
+  "US:VTI": { title: "VTI覆盖美国大中小公司，但仍是一项单一国家配置", titleLines: ["VTI覆盖美国大中小公司，", "但仍是一项单一国家配置"], summary: "它比标普500覆盖面更广，能观察美国全市场；市值加权意味着大型公司仍决定大部分波动。", risks: ["地域集中于美国", "大型公司仍占主要权重", "小盘股覆盖不会消除系统性风险"], role: "用于观察美国全市场，而不是全球市场" },
+  "US:VT": { title: "VT把多个国家放在一只ETF里，但全球分散不等于平均分配", titleLines: ["VT把多个国家放在一只ETF里，", "但全球分散不等于平均分配"], summary: "它按市值覆盖全球股票，国家权重会随市场规模变化。它降低单一国家依赖，但全球危机时仍可能一起下跌。", risks: ["美国市场仍可能占较大权重", "包含汇率与不同市场制度风险", "全球市场可能同步回撤"], role: "更接近一只全球股票底仓" },
+  "US:SCHX": { title: "SCHX覆盖约750家美国大型公司，范围广于标普500但不是全市场", titleLines: ["SCHX覆盖约750家美国大型公司，", "范围广于标普500但不是全市场"], summary: "它跟踪道琼斯美国大型股总市场指数，发行方定位是低成本大型股核心工具。和VOO相近，不代表持仓与收益路径完全相同。", risks: ["仍集中于美国大型公司", "不覆盖完整的小盘股与海外市场", "与VOO相似不等于完全可替代"], role: "低成本美国大型股核心配置候选" },
 };
 
 const money = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 0 });
@@ -183,6 +183,7 @@ export default function PlanPage() {
   const commonMetricsB = useMemo(() => common ? computeProductMetrics(common.second) : null, [common]);
   const representative = historyMode === "rolling" ? replay?.median : specificReplay;
   const dataAgeDays = historyLatest ? dayDistance(historyLatest, today()) : null;
+  const historyTitleLines: [string, string] = insight?.titleLines ?? ["ETF和个股，不能套用", "同一套长期结论"];
 
   useEffect(() => {
     const meta = MARKET_META[market];
@@ -275,7 +276,7 @@ export default function PlanPage() {
       </section>
     </section>
 
-    <section className="history-section" id="history"><div className="section-heading"><div><p>HISTORICAL STRESS TEST</p><h2>{insight?.title ?? "ETF和个股，不能套用同一套长期结论"}</h2></div><p>{insight?.summary ?? "ETF先研究指数覆盖、费用与跟踪；个股还要研究公司经营、退市和幸存者偏差。"}</p></div>
+    <section className="history-section" id="history"><div className="section-heading"><div><p>HISTORICAL STRESS TEST</p><h2 aria-label={insight?.title ?? "ETF和个股，不能套用同一套长期结论"}>{historyTitleLines.map((line) => <span className="heading-line" key={line}>{line}</span>)}</h2></div><p>{insight?.summary ?? "ETF先研究指数覆盖、费用与跟踪；个股还要研究公司经营、退市和幸存者偏差。"}</p></div>
       {insight&&<div className="asset-lens"><div><span>它更适合怎样理解</span><strong>{insight.role}</strong></div><ul>{insight.risks.map((risk)=><li key={risk}>{risk}</li>)}</ul><a href={detail?.officialUrl} target="_blank" rel="noreferrer">查看发行方资料 →</a></div>}
       {metrics&&<><MetricPanel metrics={metrics} detail={detail}/><AnnualReturnChart data={metrics.annualReturns}/></>}
       <div className="history-controls"><div className="mini-tabs"><button className={historyMode==="rolling"?"active":""} onClick={()=>setHistoryMode("rolling")}>滚动全部起点</button><button className={historyMode==="specific"?"active":""} onClick={()=>setHistoryMode("specific")}>指定历史起点</button></div>{historyMode==="specific"&&historySeries&&<label><span>历史起点</span><input type="date" min={historySeries.firstDate} max={historySeries.lastDate} value={historyStart} onChange={(event)=>setHistoryStart(event.target.value)}/></label>}</div>
@@ -284,7 +285,7 @@ export default function PlanPage() {
       <div className="stress-explainer"><div><span>滚动回放为什么仍有价值</span><strong>它让同一套计划从许多真实月份重新出发，看到起点不同带来的结果范围</strong></div><div><span>为什么不把百分位写成预测</span><strong>路径互相重叠，且未来市场环境可能不同；排序只描述历史分布</strong></div><a href={selected?`https://finance.yahoo.com/quote/${selected.symbol}/history/`:"#sources"} target="_blank" rel="noreferrer">查看公开复权行情 →</a></div>
     </section>
 
-    <section className="directory-section" id="directory"><div className="section-heading"><div><p>COMPARE ON COMMON HISTORY</p><h2>先看懂一只，再把两只放到同一段历史里</h2></div><p>目录共 {money.format(directory.length)} 只：美股 {money.format(directoryCounts.US||0)}、A股 {money.format(directoryCounts.CN||0)}、港股 {money.format(directoryCounts.HK||0)}。目录覆盖不等于深度分析覆盖。{directoryError&&"目录加载失败，请刷新。"}</p></div>
+    <section className="directory-section" id="directory"><div className="section-heading"><div><p>COMPARE ON COMMON HISTORY</p><h2><span className="heading-line">先看懂一只，</span><span className="heading-line">再把两只放到同一段历史里</span></h2></div><p>目录共 {money.format(directory.length)} 只：美股 {money.format(directoryCounts.US||0)}、A股 {money.format(directoryCounts.CN||0)}、港股 {money.format(directoryCounts.HK||0)}。目录覆盖不等于深度分析覆盖。{directoryError&&"目录加载失败，请刷新。"}</p></div>
       <div className="compare-workbench"><article><p>证券 A</p><SecuritySearch id="security-a" value={selected} market="ALL" directory={directory} onSelect={choose}/><SecurityCard security={selected} history={historySeries} metrics={metrics}/></article><article><p>证券 B</p><SecuritySearch id="security-b" value={compared} market="ALL" directory={directory} onSelect={setCompared}/><SecurityCard security={compared} history={comparedSeries} metrics={comparedMetrics}/></article><div className="compare-result"><p>共同历史口径</p>{selected&&compared&&common&&commonMetricsA&&commonMetricsB ? <><strong className="compare-period">{common.start} — {common.end}</strong><ComparisonRows a={selected.symbol} b={compared.symbol} first={commonMetricsA} second={commonMetricsB}/><DualGrowthChart first={common.first} second={common.second} firstLabel={selected.symbol} secondLabel={compared.symbol}/><small>两只产品只比较共同存在的日期，避免“历史更长”本身造成不公平。费用、指数覆盖与成立结构仍需分别看。</small></> : <div className="compare-placeholder"><strong>选择两只有复权历史的ETF</strong><p>这版先支持QQQ、VOO、SPY、VTI、VT和SCHX。其他证券仍可检索，但不会拿不完整的数据凑比较结论。</p></div>}</div></div>
     </section>
 
@@ -295,7 +296,7 @@ export default function PlanPage() {
       <div className="channel-explainer"><strong>为什么这里不能直接照搬第三方排行？</strong><p>渠道费会因基金、份额类别、用户活动和日期改变。聚合网站可以帮助发现产品，但最终对比仍要回到同一基金的招募说明书、费率公告和各渠道当日确认页。本表按“每笔投入都以录入费率减少可投资金额”做简化回放；若实际采用价内法、阶梯费率或佣金最低收费，仍应以确认页为准。</p></div>
     </section>
 
-    <section className="sources-section" id="sources"><div className="section-heading"><div><p>DATA & METHOD</p><h2>每个数字，都说明来源、日期和局限</h2></div><p>行情数据不是实时盘口。当前采用日终复权历史，适合长期研究；若自动更新失败，会保留最后成功日期，不把旧数据伪装成最新。</p></div><div className="source-list">
+    <section className="sources-section" id="sources"><div className="section-heading"><div><p>DATA & METHOD</p><h2><span className="heading-line">每个数字，都说明</span><span className="heading-line">来源、日期和局限</span></h2></div><p>行情数据不是实时盘口。当前采用日终复权历史，适合长期研究；若自动更新失败，会保留最后成功日期，不把旧数据伪装成最新。</p></div><div className="source-list">
       <article><span>产品费率</span><h3>发行方官网与最新基金资料</h3><p>QQQ、VOO、SPY、VTI、VT、SCHX的费率、成立日与跟踪指数来自发行方页面，并显示核验日期。</p><a href={detail?.officialUrl??"https://www.sec.gov/search-filings"} target="_blank" rel="noreferrer">查看当前产品原始资料 →</a></article>
       <article><span>复权行情</span><h3>Yahoo Finance Chart API</h3><p>日终复权收盘序列包含拆股与现金分配影响。它是公开数据源，不是交易所实时行情；抓取失败时不更新日期。</p><a href={selected?`https://finance.yahoo.com/quote/${selected.symbol}/history/`:"https://finance.yahoo.com/"} target="_blank" rel="noreferrer">查看公开历史 →</a></article>
       <article><span>交易日历</span><h3>NYSE、上交所与港交所公告</h3><p>已公布年份逐日排除周末和休市；远期尚未公布的年份只按历史交易日数估算并明确标注。</p><div className="multi-links"><a href="https://www.nyse.com/trade/hours-calendars" target="_blank" rel="noreferrer">NYSE</a><a href="https://www.sse.com.cn/disclosure/dealinstruc/closed/" target="_blank" rel="noreferrer">上交所</a><a href="https://www.hkex.com.hk/Services/Trading-Hours-and-Severe-Weather-Arrangements/Trading-Hours/Securities-Market?sc_lang=zh-HK" target="_blank" rel="noreferrer">港交所</a></div></article>

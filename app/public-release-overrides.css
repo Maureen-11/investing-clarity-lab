@@ -1,0 +1,97 @@
+/* Public release v2: semantic headings and bounded research layouts. */
+.section-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:30px;
+}
+
+.section-heading{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,360px);
+  align-items:end;
+  gap:clamp(28px,5vw,76px);
+  margin-bottom:30px;
+}
+
+.section-heading h2{
+  font-size:clamp(38px,3.6vw,52px);
+  line-height:1.18;
+}
+
+.section-heading>div,
+.section-heading>p{
+  min-width:0;
+}
+
+.section-heading>p{
+  max-width:360px;
+  margin:0;
+}
+
+.heading-line{
+  display:block;
+  white-space:nowrap;
+  line-break:strict;
+}
+
+@media (max-width:1050px){
+  .section-heading{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .section-heading>p{
+    max-width:700px;
+  }
+
+  .welcome-note{
+    max-width:760px;
+  }
+}
+
+@media (max-width:700px){
+  .welcome-copy h1{
+    font-size:48px;
+  }
+
+  .welcome-lede{
+    font-size:16px;
+  }
+
+  .welcome-note{
+    padding:28px;
+    border-radius:23px;
+  }
+
+  .welcome-note strong{
+    font-size:20px;
+    text-wrap:pretty;
+  }
+
+  .welcome-note strong .note-claim,
+  .welcome-note strong .note-method{
+    white-space:normal;
+  }
+
+  .section-heading h2{
+    font-size:clamp(30px,7.5vw,38px);
+    line-height:1.25;
+  }
+
+  .heading-line{
+    white-space:normal;
+  }
+
+  .directory-section .section-heading h2{
+    font-size:27px;
+    letter-spacing:-.02em;
+  }
+
+  .channels-section .section-heading h2{
+    font-size:24px;
+    white-space:nowrap;
+    letter-spacing:-.025em;
+  }
+}
