@@ -20,15 +20,15 @@ Investing Clarity Lab separates planned principal, historical paths, risk experi
 
 ## Main features
 
-- **Broad US, mainland China, and Hong Kong directory search:** Search exchange directory entries across the three markets; the market selection follows the chosen security, but a searchable instrument does not automatically have long-term history.
-- **Curated 100-ETF history pack:** 50 mainland China, 35 US, and 15 Hong Kong ETFs, each with a lazily loaded adjusted-price history across broad market, dividend/low volatility, growth, sectors, bonds, cash, gold, and REITs.
-- **Contribution calendar:** Supports daily, monthly, and annual contributions. Published years use exchange holiday calendars; periods beyond the available calendar are clearly marked as estimates.
-- **Principal accounting:** Calculates calendar days, trading days, actual contribution count, installment principal, initial capital, and total contributions.
-- **Layered analysis:** The 100 ETFs replay the longest period their own history can support. Histories shorter than one year show cumulative contributions and observed drawdown without manufacturing annualized or multi-year conclusions. Individual stocks remain facts-only.
-- **Fees and purchasing power:** Separates product expense impact, historical RMB exchange conversion, CPI purchasing power, and fixed scenarios.
-- **Charts:** Shows account value versus contributions, 100-point product growth, drawdowns, calendar-year returns, and recovery time.
-- **Evidence boundaries:** Being searchable in the security directory does not mean that a security has enough history. Individual stocks do not receive an ETF-style long-term conclusion from a surviving price series alone.
-- **Free beta API:** An optional read-only CloudBase adapter serves the same directory and verified snapshots; without it, the GitHub Pages build falls back to repository snapshots.
+- Broad US, mainland China, and Hong Kong directory search: Search exchange directory entries across the three markets; the market selection follows the chosen security, but a searchable instrument does not automatically have long-term history.
+- Curated 100-ETF history pack: 50 mainland China, 35 US, and 15 Hong Kong ETFs, each with a lazily loaded adjusted-price history across broad market, dividend/low volatility, growth, sectors, bonds, cash, gold, and REITs.
+- Contribution calendar: Supports daily, monthly, and annual contributions. Published years use exchange holiday calendars; periods beyond the available calendar are clearly marked as estimates.
+- Principal accounting: Calculates calendar days, trading days, actual contribution count, installment principal, initial capital, and total contributions.
+- Layered analysis: The 100 ETFs replay the longest period their own history can support. Histories shorter than one year show cumulative contributions and observed drawdown without manufacturing annualized or multi-year conclusions. Individual stocks remain facts-only.
+- Fees and purchasing power: Separates product expense impact, historical RMB exchange conversion, CPI purchasing power, and fixed scenarios.
+- Charts: Shows account value versus contributions, 100-point product growth, drawdowns, calendar-year returns, and recovery time.
+- Evidence boundaries: Being searchable in the security directory does not mean that a security has enough history. Individual stocks do not receive an ETF-style long-term conclusion from a surviving price series alone.
+- Free beta API: An optional read-only CloudBase adapter serves the same directory and verified snapshots; without it, the GitHub Pages build falls back to repository snapshots.
 
 ## Installation
 
@@ -120,7 +120,7 @@ The example is generated from the current VOO, FX, and CPI files with `node --ex
 
 - The default GitHub Pages build uses static end-of-day histories for all 100 ETFs. A weekly job runs at 10:00 Monday Asia/Shanghai and updates only when all 100 downloads, validations, tests, and the Pages build succeed.
 - All 100 ETFs can be replayed only across their own actual histories. A 20-year request on an eight-year-old product is shown as “20 years requested / 8 years available”; histories shorter than one year do not receive annualized or multi-year conclusions.
-- Histories prefer Eastmoney forward-adjusted daily prices and fall back to Tencent Securities qfq data when the primary endpoint is unavailable; each file records the provider actually used. Legacy Yahoo snapshots remain only for failure auditing. This repository **does not claim that it has obtained public-display or redistribution permission**. Attribution and warnings do not replace a license.
+- Histories prefer Eastmoney forward-adjusted daily prices and fall back to Tencent Securities qfq data when the primary endpoint is unavailable; each file records the provider actually used. Legacy Yahoo snapshots remain only for failure auditing. This repository does not claim that it has obtained public-display or redistribution permission. Attribution and warnings do not replace a license.
 - Sources and dates for the security directory, FX, CPI, and fund materials are listed in [DATA_SOURCES.md](./DATA_SOURCES.md).
 - The public site has no account system, advertising, or analytics tracking. Calculations run in the browser and user inputs are not uploaded.
 - This project is for education and research only. It is not investment, tax, insurance, or legal advice.
