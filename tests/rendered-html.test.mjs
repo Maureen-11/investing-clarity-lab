@@ -31,7 +31,9 @@ test("renders the plan calculator and evidence boundaries", async () => {
   const html = await response.text();
   assert.doesNotMatch(html, /访问口令|内部预览/);
   const source = await readFile(new URL("../app/plan/page.tsx", import.meta.url), "utf8");
-  for (const phrase of ["每日", "每月", "每年", "完整周期执行统计", "SCHX", "起点购买力", "国家统计局历史CPI", "外汇局逐日中间价", "产品费用和购买渠道，分开算", "共同历史口径", "天天基金", "个股不能只根据价格历史给出ETF式长期结论"]) assert.match(source, new RegExp(phrase));
+  for (const phrase of ["每日", "每月", "每年", "完整周期执行统计", "SCHX", "起点购买力", "国家统计局历史CPI", "外汇局逐日中间价", "产品费用和购买渠道，分开算", "共同历史口径", "天天基金", "当前按个股事实统计逻辑处理，不生成 ETF 式长期收益范围"]) assert.match(source, new RegExp(phrase));
+  assert.match(source, /例如：QQQ、VOO、SPY、SCHX/);
+  assert.doesNotMatch(source, /placeholder="[^"]*(长江电力|小米)/);
   assert.doesNotMatch(source, /本期研究对象/);
 });
 
@@ -51,4 +53,15 @@ test("ships verified replay histories for the first ETF cohort", async () => {
     assert.ok(history[symbol].points.length > 1000, `${symbol} history is too short`);
     assert.match(history[symbol].source, /复权收盘价/);
   }
+});
+
+test("ships the curated 100 ETF manifest and lazy history files", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../public/data/etf-pack-manifest.json", import.meta.url), "utf8"));
+  assert.deepEqual(manifest.counts, { total: 100, CN: 50, US: 35, HK: 15 });
+  for (const id of ["CN:159919", "CN:510300", "CN:510880", "CN:512890", "US:QQQ", "US:VOO", "HK:02800", "HK:03033"]) {
+    assert.ok(manifest.entries.some((entry) => entry.id === id), `${id} missing from pack`);
+  }
+  const qqq = JSON.parse(await readFile(new URL("../public/data/etf-history/US/QQQ.json", import.meta.url), "utf8"));
+  assert.equal(qqq.seriesType, "etf-total-return");
+  assert.equal(qqq.licenseStatus, "not-confirmed");
 });

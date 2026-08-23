@@ -41,10 +41,45 @@ export type HistorySeries = {
   firstDate: string;
   lastDate: string;
   points: [string, number][];
+  /** Optional provenance fields populated by licensed providers in later phases. */
+  seriesType?: "etf-total-return" | "index-total-return" | "price-only";
+  licenseStatus?: "verified" | "pending" | "not-confirmed";
+  sourceUrl?: string;
   proxyUntil?: string;
   proxyLabel?: string;
 };
 export type HistoryLibrary = Record<string, HistorySeries>;
+
+export type EtfPackEntry = {
+  id: string;
+  symbol: string;
+  name: string;
+  market: Market;
+  category: string;
+  benchmark: string | null;
+  issuer: string | null;
+  fee: number | null;
+  feeAsOf: string | null;
+  inception: string | null;
+  firstDate: string | null;
+  lastDate: string | null;
+  retrieved: string | null;
+  sourceUrl: string | null;
+  historyPath: string | null;
+  seriesType: HistorySeries["seriesType"] | null;
+  dataStatus: "verified-history" | "metadata-only";
+  licenseStatus: "verified" | "pending" | "not-confirmed";
+  publicHistoryEligible: boolean;
+};
+
+export type EtfPackManifest = {
+  version: number;
+  generated: string;
+  scope: "curated-100";
+  counts: { total: number; CN: number; US: number; HK: number };
+  notes: string;
+  entries: EtfPackEntry[];
+};
 
 export type MacroSeries = {
   source: string;
