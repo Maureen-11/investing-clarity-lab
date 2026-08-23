@@ -12,7 +12,8 @@
     "build:mainland": "node scripts/build-mainland.mjs",
     "data:update": "node scripts/build_macro_history.mjs && node scripts/build_etf_history.mjs",
     "data:update:macro": "node scripts/build_macro_history.mjs",
-    "data:update:market": "node scripts/build_etf_history.mjs",
+    "data:update:market": "node scripts/build_etf_history.mjs && node scripts/build_etf_pack.mjs",
+    "data:etf-pack": "node scripts/build_etf_pack.mjs",
     "start": "vinext start",
     "test": "npm run build && node --experimental-strip-types --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"

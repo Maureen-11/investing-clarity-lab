@@ -5,6 +5,8 @@ import {
   CalendarAnalysis,
   Frequency,
   FundDetail,
+  EtfPackEntry,
+  EtfPackManifest,
   FxMode,
   HistoryLibrary,
   HistorySeries,
@@ -28,6 +30,8 @@ import {
   projectedPrincipal,
   replayWindow,
 } from "./engine";
+import { capabilityFor, historyFor, packEntryFor, type AnalysisCapability } from "./capabilities";
+import { loadMarketData, loadSecurityHistory } from "./market-api";
 
 const PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -74,7 +78,7 @@ function buildVooProxy(voo: HistorySeries | undefined, spy: HistorySeries | unde
   return { ...voo, firstDate: proxyPoints[0]?.[0] ?? voo.firstDate, points: [...proxyPoints, ...voo.points], proxyUntil: voo.firstDate, proxyLabel: "VOO成立前使用同指数ETF SPY的复权历史，并按两者当前费率差做近似调整" };
 }
 
-function SecuritySearch({ id, value, market, directory, onSelect }: { id: string; value: Security | null; market: MarketFilter; directory: Security[]; onSelect: (item: Security) => void }) {
+function SecuritySearch({ id, value, market, directory, historyLibrary, packEntries, onSelect }: { id: string; value: Security | null; market: MarketFilter; directory: Security[]; historyLibrary: HistoryLibrary; packEntries: EtfPackEntry[]; onSelect: (item: Security) => void }) {
   const [draft, setDraft] = useState("");
   const [open, setOpen] = useState(false);
   // Keep the editable label synchronized when a result is selected externally.
@@ -91,25 +95,29 @@ function SecuritySearch({ id, value, market, directory, onSelect }: { id: string
   }, [draft, value, market, directory]);
   return <label className="search-field" htmlFor={id}>
     <span>证券名称或代码</span>
-    <div className="search-box"><input id={id} value={draft} autoComplete="off" placeholder="例如：VOO、SCHX、长江电力、小米" onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 120)} onChange={(event) => { setDraft(event.target.value); setOpen(true); }} /><b aria-hidden="true">⌕</b>
-      {open && matches.length > 0 && <div className="search-menu">{matches.map((item) => <button type="button" key={item.id} onMouseDown={(event) => event.preventDefault()} onClick={() => { onSelect(item); setOpen(false); }}><span><strong>{item.symbol}</strong>{item.name}</span><em>{MARKET_META[item.market].short} · {item.assetType}</em></button>)}</div>}
+    <div className="search-box"><input id={id} value={draft} autoComplete="off" placeholder="例如：QQQ、VOO、SPY、SCHX" onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 120)} onChange={(event) => { setDraft(event.target.value); setOpen(true); }} /><b aria-hidden="true">⌕</b>
+      {open && matches.length > 0 && <div className="search-menu">{matches.map((item) => { const capability = capabilityFor(item, historyFor(historyLibrary, item), packEntryFor(packEntries, item)); return <button type="button" key={item.id} onMouseDown={(event) => event.preventDefault()} onClick={() => { onSelect(item); setOpen(false); }}><span><strong>{item.symbol}</strong>{item.name}</span><em>{MARKET_META[item.market].short} · {capability.label}</em></button>; })}</div>}
       {open && draft && matches.length === 0 && (!value || draft !== `${value.symbol} — ${value.name}`) && <div className="search-empty">当前目录未找到；试试完整代码、名称或“全部市场”。</div>}
     </div>
   </label>;
 }
 
-function StatusBadge({ security, history }: { security: Security | null; history?: HistorySeries }) {
+function StatusBadge({ security, history, packEntry }: { security: Security | null; history?: HistorySeries; packEntry?: EtfPackEntry }) {
   if (!security) return <span className="status neutral">等待选择</span>;
-  if (history && FUND_DETAILS[security.id]) return <span className="status verified">资料与历史已核验</span>;
-  if (FUND_DETAILS[security.id]) return <span className="status partial">发行方资料已核验</span>;
-  return <span className="status basic">仅证券目录</span>;
+  const capability = capabilityFor(security, history, packEntry);
+  if (capability.status === "verified-history") return <span className="status verified">{capability.label}</span>;
+  if (capability.status === "facts-only") return <span className="status facts">{capability.label}</span>;
+  if (capability.status === "pack-pending") return <span className="status pending">{capability.label}</span>;
+  return <span className="status basic">{capability.label}</span>;
 }
 
 export default function PlanPage() {
   const [directory, setDirectory] = useState<Security[]>([]);
   const [historyLibrary, setHistoryLibrary] = useState<HistoryLibrary>({});
+  const [etfManifest, setEtfManifest] = useState<EtfPackManifest | null>(null);
   const [macroHistory, setMacroHistory] = useState<MacroHistory | null>(null);
   const [directoryError, setDirectoryError] = useState(false);
+  const [dataSource, setDataSource] = useState<"cloudbase" | "static">("static");
   const [marketFilter, setMarketFilter] = useState<MarketFilter>("ALL");
   const [selected, setSelected] = useState<Security | null>(null);
   const [compared, setCompared] = useState<Security | null>(null);
@@ -133,9 +141,18 @@ export default function PlanPage() {
   const paymentInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch(`${PUBLIC_BASE_PATH}/data/securities.json`).then((response) => response.json()).then(setDirectory).catch(() => setDirectoryError(true));
-    fetch(`${PUBLIC_BASE_PATH}/data/etf-history.json`).then((response) => response.json()).then(setHistoryLibrary).catch(() => setHistoryLibrary({}));
-    fetch(`${PUBLIC_BASE_PATH}/data/macro-history.json`).then((response) => response.json()).then(setMacroHistory).catch(() => setMacroHistory(null));
+    loadMarketData(PUBLIC_BASE_PATH).then((bundle) => {
+      setDirectory(bundle.directory);
+      setHistoryLibrary(bundle.historyLibrary);
+      setEtfManifest(bundle.etfManifest);
+      setMacroHistory(bundle.macroHistory);
+      setDataSource(bundle.source);
+    }).catch(() => {
+      setDirectoryError(true);
+      setHistoryLibrary({});
+      setEtfManifest(null);
+      setMacroHistory(null);
+    });
   }, []);
 
   const market: Market = selected?.market ?? (marketFilter === "ALL" ? "US" : marketFilter);
@@ -143,10 +160,15 @@ export default function PlanPage() {
   const fxSeries = market === "US" ? macroHistory?.fx.USD_CNY : market === "HK" ? macroHistory?.fx.HKD_CNY : undefined;
   const cpiSeries = macroHistory?.cpiCny;
   const insight = selected ? ASSET_INSIGHTS[selected.id] : undefined;
-  const actualHistorySeries = selected ? historyLibrary[selected.symbol] : undefined;
+  const packEntries = etfManifest?.entries ?? [];
+  const selectedPackEntry = packEntryFor(packEntries, selected);
+  const comparedPackEntry = packEntryFor(packEntries, compared);
+  const actualHistorySeries = historyFor(historyLibrary, selected);
   const availableProxySeries = useMemo(() => selected?.id === "US:VOO" ? buildVooProxy(historyLibrary.VOO, historyLibrary.SPY) : undefined, [selected?.id, historyLibrary]);
   const historySeries = proxyEnabled && availableProxySeries ? availableProxySeries : actualHistorySeries;
-  const comparedSeries = compared ? historyLibrary[compared.symbol] : undefined;
+  const comparedSeries = historyFor(historyLibrary, compared);
+  const capability = capabilityFor(selected, actualHistorySeries, selectedPackEntry);
+  const isEtfReplay = capability.mode === "etf-replay";
   const availableHistoryYears = historySeries ? Math.floor(dayDistance(historySeries.firstDate, historySeries.lastDate) / 365.25) : 0;
   const suggestedYears = availableHistoryYears >= 20 ? 20 : availableHistoryYears >= 15 ? 15 : availableHistoryYears >= 10 ? 10 : availableHistoryYears >= 5 ? 5 : 0;
 
@@ -168,6 +190,7 @@ export default function PlanPage() {
   }), [frequency, payment, initial, inflation, inflationMode, cpiSeries, contributionGrowth, fxRate, fxMode, fxSeries, startDate, market, unitMode, lotSize, detail?.fee]);
 
   const replay = useMemo(() => calculateRollingReplay(historySeries, years, options), [historySeries, years, options]);
+  const replayForDisplay = isEtfReplay ? replay : null;
   const specificReplay = useMemo(() => calculateSpecificReplay(historySeries, historyStart || historySeries?.firstDate || "", years, options), [historySeries, historyStart, years, options]);
   const metrics = useMemo(() => computeProductMetrics(actualHistorySeries), [actualHistorySeries]);
   const comparedMetrics = useMemo(() => computeProductMetrics(comparedSeries), [comparedSeries]);
@@ -184,6 +207,16 @@ export default function PlanPage() {
   const representative = historyMode === "rolling" ? replay?.median : specificReplay;
   const dataAgeDays = historyLatest ? dayDistance(historyLatest, today()) : null;
   const historyTitleLines: [string, string] = insight?.titleLines ?? ["ETF和个股，不能套用", "同一套长期结论"];
+
+  useEffect(() => {
+    const entries = [selectedPackEntry, comparedPackEntry].filter((entry): entry is EtfPackEntry => Boolean(entry?.historyPath));
+    for (const entry of entries) {
+      if (historyLibrary[entry.id] || historyLibrary[entry.symbol]) continue;
+      loadSecurityHistory(entry, PUBLIC_BASE_PATH).then((series) => {
+        if (series) setHistoryLibrary((current) => ({ ...current, [entry.id]: series, [entry.symbol]: series }));
+      }).catch(() => { /* The capability card keeps the precise no-history state. */ });
+    }
+  }, [selectedPackEntry, comparedPackEntry, historyLibrary]);
 
   useEffect(() => {
     const meta = MARKET_META[market];
@@ -226,22 +259,22 @@ export default function PlanPage() {
 
     <section className="hero" id="top">
       <div className="hero-copy"><p className="eyebrow"><span/> 定投研究工具</p><h1>先算清投入，<br/>再把计划放进<span>真实历史</span>。</h1><p className="hero-lede">从每天10元这样的生活尺度开始。工具会区分交易日、产品费用、通胀、交易单位和历史波动；不会拿一个“稳定年化”替你猜未来。</p><button className="primary-button" onClick={beginCalculation}>输入我的计划 <span>→</span></button><ul className="trust-list"><li><span>✓</span> 只在交易日执行</li><li><span>✓</span> 总回报历史回放</li><li><span>✓</span> 数据不足明确留空</li></ul></div>
-      <div className="answer-card"><div className="answer-head"><p>先看四个可计算的答案</p><StatusBadge security={selected} history={historySeries}/></div><div className="answer-grid">
+      <div className="answer-card"><div className="answer-head"><p>先看四个可计算的答案</p><StatusBadge security={selected} history={historySeries} packEntry={selectedPackEntry}/></div><div className="answer-grid">
         <article><span>01 · 计划投入</span><strong>{compactMoney(principal)}</strong><p>{money.format(calendar.contributions)}次投入，不把30天当30个交易日</p></article>
-        <article><span>02 · 历史中间结果</span><strong>{replay ? compactMoney(replay.median.endValue) : "资料不足"}</strong><p>{replay ? `${replay.samples}个滚动起点的排序中间值` : "选择有完整历史的ETF后计算"}</p></article>
-        <article><span>03 · 购买力</span><strong>{replay ? compactMoney(replay.median.realEndValue) : "随通胀变化"}</strong><p>按历史路径起点币值表示，不等于名义余额</p></article>
-        <article><span>04 · 产品费率影响</span><strong>{replay && detail ? compactMoney(replay.median.feeDrag) : (detail ? `${detail.fee}% / 年` : "等待核验")}</strong><p>{replay && detail ? "历史中间路径的期末差额估算" : "费率来自发行方，不是销售平台统一收费"}</p></article>
+        <article><span>02 · 历史中间结果</span><strong>{replayForDisplay ? compactMoney(replayForDisplay.median.endValue) : "资料不足"}</strong><p>{replayForDisplay ? `${replayForDisplay.samples}个滚动起点的排序中间值` : capability.mode === "stock-facts" ? "个股只展示事实统计" : "选择有完整历史的ETF后计算"}</p></article>
+        <article><span>03 · 购买力</span><strong>{replayForDisplay ? compactMoney(replayForDisplay.median.realEndValue) : "随通胀变化"}</strong><p>按历史路径起点币值表示，不等于名义余额</p></article>
+        <article><span>04 · 产品费率影响</span><strong>{replayForDisplay && detail ? compactMoney(replayForDisplay.median.feeDrag) : (detail ? `${detail.fee}% / 年` : "等待核验")}</strong><p>{replayForDisplay && detail ? "历史中间路径的期末差额估算" : "费率来自发行方，不是销售平台统一收费"}</p></article>
       </div><div className="answer-flow"><span>计划本金</span><b>→</b><span>真实历史</span><b>→</b><span>风险与回撤</span><b>→</b><span>费用与购买力</span></div></div>
     </section>
 
     <section className="calculator-section" id="calculator">
-      <div className="section-title"><div><p>DCA PLAN LAB</p><h2>先算清投入，再讨论收益</h2></div><span>行情最后交易日 {historyLatest ?? "加载中"} · 数据抓取 {retrievedLatest ?? "加载中"} · 证券目录 {directoryLatest ?? "加载中"}</span></div>
+      <div className="section-title"><div><p>DCA PLAN LAB</p><h2>先算清投入，再讨论收益</h2></div><span>数据模式：{dataSource === "cloudbase" ? "CloudBase 内测 API" : "公开历史快照"} · 行情最后交易日 {historyLatest ?? "加载中"} · 数据抓取 {retrievedLatest ?? "加载中"} · 证券目录 {directoryLatest ?? "加载中"}</span></div>
       <div className="calculator-layout"><div className="input-panel">
         <div className="frequency-tabs">{(["daily","monthly","yearly"] as Frequency[]).map((item) => <button type="button" key={item} className={frequency===item?"active":""} onClick={() => setFrequency(item)}>{frequencyName(item)}</button>)}</div>
         <div className="input-grid">
           <label><span>交易市场</span><select value={marketFilter} onChange={(event) => changeMarket(event.target.value as MarketFilter)}><option value="ALL">全部市场</option>{Object.entries(MARKET_META).map(([id,item]) => <option key={id} value={id}>{item.name}</option>)}</select></label>
           <label><span>计划开始日期</span><input type="date" value={startDate} onChange={(event) => setStartDate(event.target.value || today())}/></label>
-          <SecuritySearch id="main-security" value={selected} market={marketFilter} directory={directory} onSelect={choose}/>
+          <SecuritySearch id="main-security" value={selected} market={marketFilter} directory={directory} historyLibrary={historyLibrary} packEntries={packEntries} onSelect={choose}/>
           <label><span>{frequencyName(frequency)}投入</span><div className="input-with-unit"><input ref={paymentInput} type="number" min="0" step={frequency==="daily"?1:100} value={payment} onChange={(event) => setPayment(Math.max(0,Number(event.target.value)))}/><em>元</em></div></label>
           <label><span>初始资金</span><div className="input-with-unit"><input type="number" min="0" step="1000" value={initial} onChange={(event) => setInitial(Math.max(0,Number(event.target.value)))}/><em>元</em></div></label>
           <label><span>投入年限</span><div className="input-with-unit"><input type="number" min="1" max="40" value={years} onChange={(event) => setYears(Math.max(1,Math.min(40,Number(event.target.value))))}/><em>年</em></div></label>
@@ -253,23 +286,23 @@ export default function PlanPage() {
           {unitMode==="whole"&&<label><span>每手份额（需向券商核对）</span><div className="input-with-unit"><input type="number" min="1" step="1" value={lotSize} onChange={(event) => setLotSize(Math.max(1,Number(event.target.value)))}/><em>份</em></div></label>}
         </div>
         <div className="switch-row"><label><input type="checkbox" checked={contributionGrowth} onChange={(event)=>setContributionGrowth(event.target.checked)}/><span>每年按通胀上调投入额</span></label><p>{contributionGrowth ? "投入额与物价同步增长，因此未来实际投入本金也会增加。" : "每次投入保持名义金额不变。"}</p></div>
-        <div className="selection-note"><StatusBadge security={selected} history={actualHistorySeries}/><p>{selected ? <><strong>{selected.symbol} · {selected.name}</strong> 已自动切换到{MARKET_META[selected.market].short}。{actualHistorySeries ? "可生成数据图和真实历史回放。" : FUND_DETAILS[selected.id] ? "发行方资料已核验，但还没有可复核的日度总回报历史。" : selected.assetType.toLowerCase().includes("etf") || selected.assetType.includes("基金") ? "当前只有证券目录资料，不能生成收益范围。" : "个股不会只用存续价格生成ETF式长期结论。"}</> : "输入证券后，市场会自动联动。"}</p></div>
+        <div className="selection-note"><StatusBadge security={selected} history={actualHistorySeries} packEntry={selectedPackEntry}/><p>{selected ? <><strong>{selected.symbol} · {selected.name}</strong> 已自动切换到{MARKET_META[selected.market].short}。{capability.description}</> : "输入证券后，市场会自动联动。"}</p></div>
         <p className="method-inline">{market!=="CN" ? (fxMode==="historical"&&fxSeries ? `每笔投入按当日外汇局人民币汇率中间价换算，非交易日沿用最近公布值；当前最新参考值为 1 ${MARKET_META[market].currency} = ${fxSeries.points.at(-1)?.[1].toFixed(4)} 元（${fxSeries.lastDate}）。中间价不是券商实际换汇成交价。` : `当前按固定汇率情景换算；它适合做敏感性测试，不代表历史实际换汇成本。`) : "A股以人民币计价，无需换汇。"} {inflationMode==="historical"&&cpiSeries ? `购买力按国家统计局CPI月度指数计算（最新 ${cpiSeries.lastDate}），超出覆盖期才使用你填写的通胀假设。` : "购买力按固定通胀假设计算。"}</p>
       </div>
 
       <div className="projection-panel" aria-live="polite">
-        <div className="projection-head"><span>{selected ? `${selected.symbol} · ${MARKET_META[market].short}` : "尚未选择证券"}</span><StatusBadge security={selected} history={actualHistorySeries}/></div>
+        <div className="projection-head"><span>{selected ? `${selected.symbol} · ${MARKET_META[market].short}` : "尚未选择证券"}</span><StatusBadge security={selected} history={actualHistorySeries} packEntry={selectedPackEntry}/></div>
         {detail&&<div className="fund-strip"><div><span>发行方年费率</span><strong>{detail.fee}%</strong><small>截至 {detail.feeAsOf}</small></div><div><span>跟踪指数</span><strong>{detail.benchmark}</strong><small>{detail.issuer} · <a href={detail.officialUrl} target="_blank" rel="noreferrer">原始资料 ↗</a></small></div></div>}
         <div className="principal-card"><p>计划期内总投入</p><strong>{decimal.format(principal/10000)}<small> 万元</small></strong><dl><div><dt>定投次数</dt><dd>{money.format(calendar.contributions)}次</dd></div><div><dt>分期投入</dt><dd>{money.format(periodicPrincipal)}元</dd></div><div><dt>初始资金</dt><dd>{money.format(initial)}元</dd></div></dl></div>
-        {replay ? <><div className="outcome-focus"><span>历史排序中间路径的期末金额</span><strong>{compactMoney(replay.median.endValue)}</strong><div><p>按路径起点购买力 <b>{compactMoney(replay.median.realEndValue)}</b></p><p>投资收益 <b>{compactMoney(replay.median.endValue-replay.median.principal)}</b></p><p>按当前费率估算的期末拖累 <b>{compactMoney(replay.median.feeDrag)}</b></p></div></div><div className="scenario-cards"><ScenarioCard label="最不利实际起点" replay={replay.worst}/><ScenarioCard label="排序中间起点" replay={replay.median}/><ScenarioCard label="最有利实际起点" replay={replay.best}/></div><p className="warning-note">三张卡展示真实历史边界，主结果放在上方。{replay.samples}条路径高度重叠；“排序中间”不是未来概率。复权行情已经包含历史实际费用影响；费率拖累是把发行方当前费率假设应用于整段路径的反事实估算，不代表产品过去每年都采用今天的费率。</p></> : <NoAnalysis selected={selected} insight={insight} years={years} availableHistoryYears={availableHistoryYears} suggestedYears={suggestedYears} onYears={setYears} onQuick={chooseQuick}/>}
+        {replayForDisplay ? <><div className="outcome-focus"><span>历史排序中间路径的期末金额</span><strong>{compactMoney(replayForDisplay.median.endValue)}</strong><div><p>按路径起点购买力 <b>{compactMoney(replayForDisplay.median.realEndValue)}</b></p><p>投资收益 <b>{compactMoney(replayForDisplay.median.endValue-replayForDisplay.median.principal)}</b></p><p>按当前费率估算的期末拖累 <b>{compactMoney(replayForDisplay.median.feeDrag)}</b></p></div></div><div className="scenario-cards"><ScenarioCard label="最不利实际起点" replay={replayForDisplay.worst}/><ScenarioCard label="排序中间起点" replay={replayForDisplay.median}/><ScenarioCard label="最有利实际起点" replay={replayForDisplay.best}/></div><p className="warning-note">三张卡展示真实历史边界，主结果放在上方。{replayForDisplay.samples}条路径高度重叠；“排序中间”不是未来概率。复权行情已经包含历史实际费用影响；费率拖累是把发行方当前费率假设应用于整段路径的反事实估算，不代表产品过去每年都采用今天的费率。</p></> : <NoAnalysis selected={selected} insight={insight} capability={capability} years={years} availableHistoryYears={availableHistoryYears} suggestedYears={suggestedYears} onYears={setYears} onQuick={chooseQuick}/>}
       </div></div>
 
       <CalendarCard calendar={calendar} market={market} frequency={frequency}/>
 
       <section className="chart-lab" id="charts">
         <div className="chart-heading"><div><span>DATA AT A GLANCE</span><h3>{selected ? `${selected.symbol} 的数据图` : "选择标的后生成数据图"}</h3></div><p>图表使用日终复权总回报；账户图按所选汇率口径换算人民币。仍不包含税、点差和券商规则。</p></div>
-        {historySeries&&metrics&&representative ? <div className="chart-grid">
-          <article className="chart-card wide"><div className="chart-card-head"><div><span>我的定投账户</span><strong>投入本金与账户价值</strong></div><div className="mini-tabs"><button className={!realChart?"active":""} onClick={()=>setRealChart(false)}>名义金额</button><button className={realChart?"active":""} onClick={()=>setRealChart(true)}>起点购买力</button></div></div><AccountChart path={representative.path??[]} real={realChart} proxyUntil={historySeries.proxyUntil}/><p>{historyMode==="rolling"?`展示滚动样本中排序居中的路径：${representative.start}—${representative.end}`:`展示指定起点路径：${representative.start}—${representative.end}`} {historySeries.proxyLabel&&`虚线部分：${historySeries.proxyLabel}。`}</p></article>
+        {historySeries&&metrics ? <div className="chart-grid">
+          {isEtfReplay&&representative&&<article className="chart-card wide"><div className="chart-card-head"><div><span>我的定投账户</span><strong>投入本金与账户价值</strong></div><div className="mini-tabs"><button className={!realChart?"active":""} onClick={()=>setRealChart(false)}>名义金额</button><button className={realChart?"active":""} onClick={()=>setRealChart(true)}>起点购买力</button></div></div><AccountChart path={representative.path??[]} real={realChart} proxyUntil={historySeries.proxyUntil}/><p>{historyMode==="rolling"?`展示滚动样本中排序居中的路径：${representative.start}—${representative.end}`:`展示指定起点路径：${representative.start}—${representative.end}`} {historySeries.proxyLabel&&`虚线部分：${historySeries.proxyLabel}。`}</p></article>}
           <article className="chart-card"><div className="chart-card-head"><div><span>产品本身</span><strong>100点增长到多少</strong></div></div><LineChart data={metrics.growth} tone="green" suffix="点"/><p>只比较产品总回报，不代表你的定投账户。</p></article>
           <article className="chart-card"><div className="chart-card-head"><div><span>风险过程</span><strong>距离历史高点有多远</strong></div></div><LineChart data={metrics.drawdowns} tone="red" suffix="%"/><p>最大回撤 {metrics.maxDrawdown.toFixed(1)}%，发生于 {metrics.drawdownWindow}。</p></article>
         </div> : <div className="chart-empty">当前标的没有经过核验的复权历史，所以不画一条看似精确、实际不可追溯的曲线。</div>}
@@ -280,13 +313,13 @@ export default function PlanPage() {
       {insight&&<div className="asset-lens"><div><span>它更适合怎样理解</span><strong>{insight.role}</strong></div><ul>{insight.risks.map((risk)=><li key={risk}>{risk}</li>)}</ul><a href={detail?.officialUrl} target="_blank" rel="noreferrer">查看发行方资料 →</a></div>}
       {metrics&&<><MetricPanel metrics={metrics} detail={detail}/><AnnualReturnChart data={metrics.annualReturns}/></>}
       <div className="history-controls"><div className="mini-tabs"><button className={historyMode==="rolling"?"active":""} onClick={()=>setHistoryMode("rolling")}>滚动全部起点</button><button className={historyMode==="specific"?"active":""} onClick={()=>setHistoryMode("specific")}>指定历史起点</button></div>{historyMode==="specific"&&historySeries&&<label><span>历史起点</span><input type="date" min={historySeries.firstDate} max={historySeries.lastDate} value={historyStart} onChange={(event)=>setHistoryStart(event.target.value)}/></label>}</div>
-      {historyMode==="rolling"&&replay ? <><div className={`replay-grid ${replay.limited?"limited":""}`}><ReplayCard label="过去最不利的实际起点" item={replay.worst}/>{!replay.limited&&<ReplayCard label="历史排序中间的起点" item={replay.median} featured/>}<ReplayCard label="过去最有利的实际起点" item={replay.best}/></div><div className="replay-summary"><div><span>完整滚动路径</span><strong>{replay.samples} 条</strong><p>每月取一个起点，相邻样本高度重叠。</p></div><div><span>期末低于投入本金</span><strong>{(replay.lossShare*100).toFixed(1)}%</strong><p>只是历史出现比例，不是未来亏损概率。</p></div><div><span>实际历史</span><strong>{replay.firstDate} 起</strong><p>最后交易日 {replay.lastDate}。</p></div></div></> : historyMode==="specific"&&specificReplay ? <div className="specific-result"><ReplayCard label="指定起点的真实路径" item={specificReplay} featured/><div><span>它回答什么</span><strong>如果当时开始执行同一套计划，实际经历了什么</strong><p>这是单条历史路径，不代表“最可能发生”的未来。换一个起点，结果可能明显不同。</p></div></div> : <HistoryEmpty/>}
+      {isEtfReplay&&historyMode==="rolling"&&replay ? <><div className={`replay-grid ${replay.limited?"limited":""}`}><ReplayCard label="过去最不利的实际起点" item={replay.worst}/>{!replay.limited&&<ReplayCard label="历史排序中间的起点" item={replay.median} featured/>}<ReplayCard label="过去最有利的实际起点" item={replay.best}/></div><div className="replay-summary"><div><span>完整滚动路径</span><strong>{replay.samples} 条</strong><p>每月取一个起点，相邻样本高度重叠。</p></div><div><span>期末低于投入本金</span><strong>{(replay.lossShare*100).toFixed(1)}%</strong><p>只是历史出现比例，不是未来亏损概率。</p></div><div><span>实际历史</span><strong>{replay.firstDate} 起</strong><p>最后交易日 {replay.lastDate}。</p></div></div></> : isEtfReplay&&historyMode==="specific"&&specificReplay ? <div className="specific-result"><ReplayCard label="指定起点的真实路径" item={specificReplay} featured/><div><span>它回答什么</span><strong>如果当时开始执行同一套计划，实际经历了什么</strong><p>这是单条历史路径，不代表“最可能发生”的未来。换一个起点，结果可能明显不同。</p></div></div> : capability.mode === "stock-facts" ? <div className="facts-only-note"><strong>个股只展示事实统计</strong><p>上方指标和年度图描述这段价格/股息历史；不会把存续价格曲线包装成“最差、最好长期定投结论”。个股还需要结合公司经营、退市、业务变化和幸存者偏差。</p></div> : <HistoryEmpty/>}
       <div className="proxy-box"><label><input type="checkbox" checked={proxyEnabled} disabled={!availableProxySeries} onChange={(event)=>setProxyEnabled(event.target.checked)}/><span>允许使用代理历史（默认关闭）</span></label><p>{availableProxySeries ? (proxyEnabled ? `${availableProxySeries.proxyLabel}。代理与真实产品会分段标注，不作为“VOO实际存在了更久”。` : "关闭时只使用VOO成立后的真实复权历史。开启后可用SPY补足同一指数的更早阶段。") : "当前标的尚未接入满足来源、总回报和拼接口径要求的代理历史，因此不会悄悄延长。"}</p></div>
       <div className="stress-explainer"><div><span>滚动回放为什么仍有价值</span><strong>它让同一套计划从许多真实月份重新出发，看到起点不同带来的结果范围</strong></div><div><span>为什么不把百分位写成预测</span><strong>路径互相重叠，且未来市场环境可能不同；排序只描述历史分布</strong></div><a href={selected?`https://finance.yahoo.com/quote/${selected.symbol}/history/`:"#sources"} target="_blank" rel="noreferrer">查看公开复权行情 →</a></div>
     </section>
 
     <section className="directory-section" id="directory"><div className="section-heading"><div><p>COMPARE ON COMMON HISTORY</p><h2><span className="heading-line">先看懂一只，</span><span className="heading-line">再把两只放到同一段历史里</span></h2></div><p>目录共 {money.format(directory.length)} 只：美股 {money.format(directoryCounts.US||0)}、A股 {money.format(directoryCounts.CN||0)}、港股 {money.format(directoryCounts.HK||0)}。目录覆盖不等于深度分析覆盖。{directoryError&&"目录加载失败，请刷新。"}</p></div>
-      <div className="compare-workbench"><article><p>证券 A</p><SecuritySearch id="security-a" value={selected} market="ALL" directory={directory} onSelect={choose}/><SecurityCard security={selected} history={historySeries} metrics={metrics}/></article><article><p>证券 B</p><SecuritySearch id="security-b" value={compared} market="ALL" directory={directory} onSelect={setCompared}/><SecurityCard security={compared} history={comparedSeries} metrics={comparedMetrics}/></article><div className="compare-result"><p>共同历史口径</p>{selected&&compared&&common&&commonMetricsA&&commonMetricsB ? <><strong className="compare-period">{common.start} — {common.end}</strong><ComparisonRows a={selected.symbol} b={compared.symbol} first={commonMetricsA} second={commonMetricsB}/><DualGrowthChart first={common.first} second={common.second} firstLabel={selected.symbol} secondLabel={compared.symbol}/><small>两只产品只比较共同存在的日期，避免“历史更长”本身造成不公平。费用、指数覆盖与成立结构仍需分别看。</small></> : <div className="compare-placeholder"><strong>选择两只有复权历史的ETF</strong><p>这版先支持QQQ、VOO、SPY、VTI、VT和SCHX。其他证券仍可检索，但不会拿不完整的数据凑比较结论。</p></div>}</div></div>
+      <div className="compare-workbench"><article><p>证券 A</p><SecuritySearch id="security-a" value={selected} market="ALL" directory={directory} historyLibrary={historyLibrary} packEntries={packEntries} onSelect={choose}/><SecurityCard security={selected} history={historySeries} metrics={metrics} packEntry={selectedPackEntry}/></article><article><p>证券 B</p><SecuritySearch id="security-b" value={compared} market="ALL" directory={directory} historyLibrary={historyLibrary} packEntries={packEntries} onSelect={setCompared}/><SecurityCard security={compared} history={comparedSeries} metrics={comparedMetrics} packEntry={comparedPackEntry}/></article><div className="compare-result"><p>共同历史口径</p>{selected&&compared&&common&&commonMetricsA&&commonMetricsB ? <><strong className="compare-period">{common.start} — {common.end}</strong><ComparisonRows a={selected.symbol} b={compared.symbol} first={commonMetricsA} second={commonMetricsB}/><DualGrowthChart first={common.first} second={common.second} firstLabel={selected.symbol} secondLabel={compared.symbol}/><small>两只产品只比较共同存在的日期，避免“历史更长”本身造成不公平。费用、指数覆盖与成立结构仍需分别看。</small></> : <div className="compare-placeholder"><strong>选择两只有可核验复权历史的ETF</strong><p>目录覆盖中美港大量证券；100只主流ETF会标明清单状态，只有当前快照同时具备复权历史的标的才生成共同历史比较。</p></div>}</div></div>
     </section>
 
     <section className="channels-section" id="channels"><div className="section-heading"><div><p>FUND COST VERIFIER</p><h2>产品费用和购买渠道，分开算</h2></div><p>ETF年费率已经体现在基金净值里；销售渠道可能影响申购费、佣金、汇兑与点差。支付宝和天天基金没有一个适用于所有产品的统一“默认费率”。</p></div>
@@ -304,7 +337,7 @@ export default function PlanPage() {
       <article><span>购买力</span><h3>国家统计局居民消费价格指数</h3><p>历史路径按月度CPI指数换算为路径起点购买力；覆盖期外才使用用户填写的通胀情景，不改变名义账户余额。</p><a href="https://data.stats.gov.cn/easyquery.htm?cn=A01" target="_blank" rel="noreferrer">查看国家数据 →</a></article>
       <article><span>证券目录</span><h3>交易所与官方证券列表</h3><p>目录用来检索名称、代码与市场，不代表每只证券都有行情、基金资料或可作长期结论。</p><div className="multi-links"><a href="https://www.nasdaqtrader.com/trader.aspx?id=symboldirdefs" target="_blank" rel="noreferrer">Nasdaq</a><a href="https://www.szse.cn/market/product/stock/list/index.html" target="_blank" rel="noreferrer">深交所</a><a href="https://www.hkex.com.hk/Services/Trading/Securities/Securities-Lists?sc_lang=zh-HK" target="_blank" rel="noreferrer">港交所</a></div></article>
       <article><span>费用影响</span><h3>SEC Investor.gov费用说明</h3><p>基金运营费用从基金资产中扣除并降低净值回报；本工具不在复权回报上再次扣一次，而是做无费率反事实。</p><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/mutual-fund-and-etf-fees-and-expenses-investor-bulletin" target="_blank" rel="noreferrer">查看SEC说明 →</a></article>
-      <article><span>更新时间</span><h3>日终更新，而非盘中“实时”</h3><p>长期定投不需要秒级价格。本版刷新流程会尝试更新全部首批ETF；任何一个来源失败都会明确失败，不悄悄写入残缺文件。</p><span className={`source-stamp ${dataAgeDays!=null&&dataAgeDays>7?"stale":""}`}>最后交易日 {historyLatest??"—"} · 抓取 {retrievedLatest??"—"}{dataAgeDays!=null&&dataAgeDays>7?` · 已滞后${dataAgeDays}天`:""}</span></article>
+      <article><span>更新时间</span><h3>日终更新，而非盘中“实时”</h3><p>长期定投不需要秒级价格。当前页面只展示已核验快照；更新失败会明确保留旧日期，不悄悄写入残缺文件。</p><span className={`source-stamp ${dataAgeDays!=null&&dataAgeDays>7?"stale":""}`}>最后交易日 {historyLatest??"—"} · 抓取 {retrievedLatest??"—"}{dataAgeDays!=null&&dataAgeDays>7?` · 已滞后${dataAgeDays}天`:""}</span></article>
     </div><div className="method-note"><strong>仍然没有假装解决的事</strong><p>外汇中间价不等于券商实际换汇价；港股每手股数因证券而异；税、佣金、点差与碎股支持取决于券商；当前产品费率不等于全部历史年度费率；指数代理历史仍需可核验的总回报序列与拼接方法。尚未完整接入的信息只给可编辑假设和明确提示。</p></div></section>
 
     <section className="principles"><div><p>简投学堂的原则</p><h2>看懂不确定性，<br/>比背一个年化更重要。</h2></div><ul><li><strong>01</strong><span>投入金额、交易次数、名义结果与起点购买力分开显示。</span></li><li><strong>02</strong><span>产品回撤与个人账户浮亏分开，ETF与个股也分开分析。</span></li><li><strong>03</strong><span>历史回放用于理解风险，不承诺未来回报。</span></li></ul></section>
@@ -320,8 +353,26 @@ function ReplayCard({ label, item, featured = false }: { label: string; item: Re
   return <article className={featured ? "featured" : ""}><span>{label}</span><strong>{compactMoney(item.endValue)}</strong><p>{item.start} — {item.end}</p><dl><div><dt>实际投入</dt><dd>{compactMoney(item.principal)}</dd></div><div><dt>定投次数</dt><dd>{money.format(item.contributions)}次</dd></div><div><dt>产品最大回撤</dt><dd>{item.productMaxDrawdown.toFixed(1)}%</dd></div><div><dt>账户最低浮盈亏</dt><dd>{item.accountWorstReturn.toFixed(1)}%</dd></div><div><dt>按起点购买力</dt><dd>{compactMoney(item.realEndValue)}</dd></div><div><dt>当前费率拖累估算</dt><dd>{compactMoney(item.feeDrag)}</dd></div></dl></article>;
 }
 
-function NoAnalysis({ selected, insight, years, availableHistoryYears, suggestedYears, onYears, onQuick }: { selected: Security|null; insight?: Insight; years: number; availableHistoryYears: number; suggestedYears: number; onYears:(value:number)=>void; onQuick:(symbol:string)=>void }) {
-  return <div className="no-analysis"><strong>{selected ? (insight ? `实际历史不足以回答“投入${years}年”` : "当前不生成长期收益结论") : "先选择证券，再判断能否分析"}</strong><p>{selected ? (insight ? `该产品约有${availableHistoryYears}年实际复权历史，无法形成完整的${years}年窗口。` : "能搜索到只说明证券存在。个股还要面对退市、业务变化和幸存者偏差，不能只凭一条存续价格曲线套用ETF结论。") : "你可以先算时间和本金；选中证券后，工具会判断资料层级。"}</p><div className="quick-picks">{insight&&suggestedYears>0&&years>suggestedYears&&<button onClick={()=>onYears(suggestedYears)}>改为{suggestedYears}年</button>}{["QQQ","VOO","SCHX","VT"].map((symbol)=><button key={symbol} onClick={()=>onQuick(symbol)}>{symbol}</button>)}</div></div>;
+function NoAnalysis({ selected, insight, capability, years, availableHistoryYears, suggestedYears, onYears, onQuick }: { selected: Security|null; insight?: Insight; capability: AnalysisCapability; years: number; availableHistoryYears: number; suggestedYears: number; onYears:(value:number)=>void; onQuick:(symbol:string, market?:Market)=>void }) {
+  const title = !selected
+    ? "先选择证券，再判断能否分析"
+    : capability.mode === "stock-facts"
+      ? "当前为个股事实统计模式"
+      : insight && availableHistoryYears > 0
+        ? `实际历史不足以回答“投入${years}年”`
+        : "已找到证券，但暂无可核验历史";
+  const explanation = !selected
+    ? "你可以先算时间和本金；选中证券后，工具会判断资料层级。"
+    : capability.mode === "stock-facts"
+      ? "个股需要结合公司经营、退市、业务变化和幸存者偏差；本工具不会只凭存续价格曲线套用 ETF 式长期结论。"
+      : insight && availableHistoryYears > 0
+        ? `该产品约有${availableHistoryYears}年实际复权历史，无法形成完整的${years}年窗口。可以切换到最长可用窗口。`
+        : capability.description;
+  const quick = [
+    ["QQQ", "US" as Market], ["VOO", "US" as Market], ["SCHX", "US" as Market],
+    ["159919", "CN" as Market], ["512890", "CN" as Market], ["01810", "HK" as Market],
+  ] as const;
+  return <div className="no-analysis"><strong>{title}</strong><p>{explanation}</p><div className="quick-picks">{insight&&suggestedYears>0&&years>suggestedYears&&<button onClick={()=>onYears(suggestedYears)}>改为{suggestedYears}年</button>}{quick.map(([symbol, market])=><button key={`${market}:${symbol}`} onClick={()=>onQuick(symbol, market)}>{symbol}</button>)}</div></div>;
 }
 
 function CalendarCard({ calendar, market, frequency }: { calendar: CalendarAnalysis; market: Market; frequency: Frequency }) {
@@ -342,11 +393,11 @@ function MetricPanel({ metrics, detail }: { metrics: ProductMetrics; detail?: Fu
   return <div className="metric-section"><div className="metric-grid">{items.map((item)=><details key={item.name}><summary><span>{item.name}</span><strong>{item.value}</strong><em>这说明什么？</em></summary><p>{item.help}</p></details>)}</div>{detail&&<div className="official-facts"><span>发行方当前资料</span><p><b>{detail.fee}%</b> 年费率 · {detail.holdings?`${detail.holdings}只持仓 · `:""}{detail.yield?`${detail.yield}%收益率指标 · `:""}{detail.spread!=null?`${detail.spread}% 30日中位买卖价差 · `:""}{detail.turnover!=null?`${detail.turnover}%换手率`:""}</p><small>各指标日期不同，逐项以发行方页面为准；缺失项不补猜。</small></div>}</div>;
 }
 
-function SecurityCard({ security, history, metrics }: { security: Security|null; history?: HistorySeries; metrics: ProductMetrics|null }) {
+function SecurityCard({ security, history, metrics, packEntry }: { security: Security|null; history?: HistorySeries; metrics: ProductMetrics|null; packEntry?: EtfPackEntry }) {
   if (!security) return <div className="security-empty">输入名称或代码，查看市场、资料层级和可比较指标。</div>;
   const detail = FUND_DETAILS[security.id];
-  const looksLikeFund = security.assetType.toLowerCase().includes("etf") || security.assetType.includes("基金");
-  return <div className="security-card"><div><h3>{security.symbol}<small>{security.name}</small></h3><StatusBadge security={security} history={history}/></div><dl><div><dt>市场 / 交易所</dt><dd>{MARKET_META[security.market].short} · {security.exchange}</dd></div><div><dt>资产类型</dt><dd>{security.assetType}</dd></div><div><dt>费用率</dt><dd>{detail?`${detail.fee}%（${detail.feeAsOf}）`:"暂无可靠数据"}</dd></div>{detail&&<div><dt>跟踪指数</dt><dd>{detail.benchmark}</dd></div>}{history&&<div><dt>历史覆盖</dt><dd>{history.firstDate}—{history.lastDate}</dd></div>}{metrics&&<><div><dt>存续期年化总回报</dt><dd>{metrics.cagr.toFixed(1)}%</dd></div><div><dt>最大回撤</dt><dd>{metrics.maxDrawdown.toFixed(1)}%</dd></div></>}</dl>{detail&&<a href={detail.officialUrl} target="_blank" rel="noreferrer">发行方原始资料 →</a>}{!history&&<p className="security-boundary">{looksLikeFund?"该基金尚未接入可核验复权历史；可搜索不等于已有收益分析。":"个股不能只根据价格历史给出ETF式长期结论；还需研究公司经营、退市和幸存者偏差。"}</p>}</div>;
+  const capability = capabilityFor(security, history, packEntry);
+  return <div className="security-card"><div><h3>{security.symbol}<small>{security.name}</small></h3><StatusBadge security={security} history={history} packEntry={packEntry}/></div><dl><div><dt>市场 / 交易所</dt><dd>{MARKET_META[security.market].short} · {security.exchange}</dd></div><div><dt>资产类型</dt><dd>{security.assetType}</dd></div><div><dt>分析模式</dt><dd>{capability.label}</dd></div>{packEntry&&<div><dt>主流包类别</dt><dd>{packEntry.category}</dd></div>}<div><dt>费用率</dt><dd>{detail?`${detail.fee}%（${detail.feeAsOf}）`:"暂无可靠数据"}</dd></div>{detail&&<div><dt>跟踪指数</dt><dd>{detail.benchmark}</dd></div>}{history&&<div><dt>历史覆盖</dt><dd>{history.firstDate}—{history.lastDate}</dd></div>}{metrics&&<><div><dt>存续期年化总回报</dt><dd>{metrics.cagr.toFixed(1)}%</dd></div><div><dt>最大回撤</dt><dd>{metrics.maxDrawdown.toFixed(1)}%</dd></div></>}</dl>{detail&&<a href={detail.officialUrl} target="_blank" rel="noreferrer">发行方原始资料 →</a>}<p className="security-boundary">{history ? capability.description : capability.mode === "stock-facts" ? "当前按个股事实统计逻辑处理，不生成 ETF 式长期收益范围。" : capability.description}</p></div>;
 }
 
 function ComparisonRows({ a, b, first, second }: { a:string; b:string; first:ProductMetrics; second:ProductMetrics }) {
@@ -395,4 +446,4 @@ function AnnualReturnChart({ data }: { data:{year:string;value:number}[] }) {
   return <div className="annual-chart"><div className="annual-head"><span>年度总回报</span><strong>每一年都不一样</strong><p>自然年复权值变化；用来打破“每年稳定赚同一个百分比”的错觉。</p></div><div className="annual-bars">{shown.map((item)=><div key={item.year} className={item.value<0?"negative":"positive"}><em>{item.value.toFixed(1)}%</em><span><i style={{height:`${Math.max(5,Math.abs(item.value)/max*100)}%`}}/></span><b>{item.year.slice(2)}</b></div>)}</div></div>;
 }
 
-function HistoryEmpty(){ return <div className="history-empty"><div><span>01</span><strong>ETF先接入</strong><p>首批支持QQQ、VOO、SPY、VTI、VT和SCHX。</p></div><div><span>02</span><strong>期限必须完整</strong><p>产品历史不足20年，就不拿15年结果冒充20年。</p></div><div><span>03</span><strong>个股另用逻辑</strong><p>公司经营与退市风险不能被一条存续价格曲线掩盖。</p></div></div>; }
+function HistoryEmpty(){ return <div className="history-empty"><div><span>01</span><strong>先确认资料层级</strong><p>目录覆盖很广，但只有具备可核验历史的 ETF 或指数才生成滚动回放。</p></div><div><span>02</span><strong>期限必须完整</strong><p>产品历史不足20年，就不拿较短窗口冒充20年。</p></div><div><span>03</span><strong>个股另用逻辑</strong><p>公司经营、退市和业务变化不能被一条存续价格曲线掩盖。</p></div></div>; }

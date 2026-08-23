@@ -6,7 +6,7 @@
 
 [在线使用](https://maureen-11.github.io/investing-clarity-lab/) · [数据说明](./DATA_SOURCES.md) · [安全政策](./SECURITY.md)
 
-English summary: Investing Clarity Lab is an evidence-first, browser-based DCA research tool for beginners. It separates contributions, market history, fees, inflation and FX effects instead of presenting a single assumed annual return as a promise.
+**English summary:** Investing Clarity Lab is an evidence-first, browser-based DCA research tool for beginners. It separates contributions, market history, fees, inflation and FX effects instead of presenting a single assumed annual return as a promise.
 
 ## 1. 项目解决什么问题
 
@@ -22,13 +22,15 @@ English summary: Investing Clarity Lab is an evidence-first, browser-based DCA r
 
 ## 2. 主要功能
 
-- 中美港证券检索：检索 A 股、港股、美股及 ETF，选择证券后自动联动交易市场。
-- 定投日历：支持每日、每月、每年投入；已公布年份使用交易所休市安排，超出覆盖期明确标为估算。
-- 本金统计：计算日历天数、交易日、实际投入次数、分期本金、初始资金和总投入。
-- 历史回放：对已具备复权历史的 QQQ、VOO、SPY、VTI、VT、SCHX 生成滚动起点和指定起点结果。
-- 费用与购买力：分开显示产品费率拖累、历史人民币汇率换算、CPI 购买力和固定情景。
-- 图表：展示账户本金与价值、产品 100 点增长、回撤过程、自然年度收益和恢复时间。
-- 证据边界：证券目录“能搜到”不等于拥有足够历史；个股不会仅凭存续价格生成 ETF 式长期结论。
+- **中美港证券检索：**使用交易所目录检索 A 股、港股、美股及 ETF，选择证券后自动联动交易市场；目录能搜到不代表一定有长期历史。
+- **100只主流ETF清单：**精选 A 股50只、美股35只、港股15只，覆盖宽基、红利低波、成长科技、行业、债券、现金、黄金和 REIT；清单状态与历史数据状态分别展示。
+- **定投日历：**支持每日、每月、每年投入；已公布年份使用交易所休市安排，超出覆盖期明确标为估算。
+- **本金统计：**计算日历天数、交易日、实际投入次数、分期本金、初始资金和总投入。
+- **分层分析：**具备可核验历史的 ETF 生成滚动起点和指定起点结果；个股进入事实统计模式；历史不足的标的明确显示空状态。
+- **费用与购买力：**分开显示产品费率拖累、历史人民币汇率换算、CPI 购买力和固定情景。
+- **图表：**展示账户本金与价值、产品 100 点增长、回撤过程、自然年度收益和恢复时间。
+- **证据边界：**证券目录“能搜到”不等于拥有足够历史；个股不会仅凭存续价格生成 ETF 式长期结论。
+- **免费内测 API：**可选配置 CloudBase 只读 API；未配置时自动使用仓库快照，不影响 GitHub Pages 静态演示。
 
 ## 3. 安装方式
 
@@ -57,24 +59,30 @@ npm test
 npm run build:pages
 ```
 
-- `npm test` 会先执行应用构建，再运行交易日、汇率、CPI、历史回放和页面边界测试。
+- `npm test` 会先执行应用构建，再运行交易日、汇率、CPI、历史回放、证券能力状态和页面边界测试。
 - `npm run build:pages` 会为 GitHub Pages 的 `/investing-clarity-lab` 子路径生成 `out/` 静态文件。
 - 如需生成不带子路径的静态版本，运行 `npm run build:mainland`。
 
 本地 Sites 托管配置不进入版本库。如确有需要，可复制 `.openai/hosting.example.json` 为 `.openai/hosting.json`，再填写自己的项目配置；不要提交该文件。
 
+### CloudBase 免费内测
+
+默认不配置 API，页面使用 `public/data/` 静态快照。部署 `cloudbase/functions/market-api/` 后，可通过环境变量让前端优先请求 CloudBase：
+
+```powershell
+$env:NEXT_PUBLIC_MARKET_API_URL = "https://你的CloudBase接口域名"
+npm run dev
+```
+
+API 只返回目录、已核验快照和能力状态；不包含实时数据源密钥，也不会为缺失历史生成伪造结论。CloudBase 默认域名仅用于开发测试，正式域名和备案属于后续阶段。
+
 ## 4. 使用方法
 
 **1.** 在首页进入“定投研究工具”。
-
 **2.** 搜索 ETF、指数基金或股票代码/名称；市场会自动切换到美股、A 股或港股。
-
 **3.** 设置计划开始日期、每日/月度/年度频率、每次投入、初始资金和投入年限。
-
 **4.** 选择历史或固定汇率、历史 CPI 或固定通胀情景，以及碎股或整股/整手口径。
-
 **5.** 先阅读“总投入”和“投入次数”，再查看历史最不利、排序中间和最有利实际起点。
-
 **6.** 结合回撤、恢复时间、购买力和费用拖累理解结果，不把历史排序当成未来概率。
 
 ## 5. 输入输出示例
@@ -108,11 +116,12 @@ npm run build:pages
 | 排序中间路径的费率拖累估算 | ¥2,266 |
 | VOO 样本期最大回撤 | -33.99% |
 
-本次滚动回放共有 11 个完整 15 年起点；排序中间路径为 `2011-01-03—2026-01-05`。ETF 历史截止 `2026-07-27`，宏观数据截止 `2026-08-18`。更新数据后，样本数和结果会变化。
+本次滚动回放共有 11 个完整 15 年起点；排序中间路径为 `2011-01-03—2026-01-05`。ETF 历史仍截止 `2026-07-27`（本次 Yahoo 请求返回 403，旧快照未覆盖），汇率宏观快照已更新至 `2026-08-21`，CPI 最新公布月为 `2026-07`。更新数据后，样本数和结果会变化。
 
 ## 数据、隐私与许可边界
 
-- 网站使用静态数据快照，不是实时行情终端，也没有后台每日自动更新服务。
+- 默认 GitHub Pages 构建使用静态数据快照；可选的免费 CloudBase 内测适配层只服务同一批快照，不是实时行情终端，也不承诺后台每日自动更新。
+- 100只主流ETF已完成目录和分类核验，但当前只有 QQQ、VOO、SPY、VTI、VT、SCHX 带有本地历史文件。其余标的显示“主流ETF清单 · 历史待补”，不会生成假收益范围。
 - ETF 复权历史来自 Yahoo Finance Chart API；仓库**不声称已经获得公开展示或再分发许可**。保留来源说明并不等于获得授权，公开使用者需要自行评估并取得所需许可。
 - 证券目录、汇率、CPI 和基金资料的来源及日期见 [DATA_SOURCES.md](./DATA_SOURCES.md)。
 - 当前公开站没有账号系统、广告或分析追踪；计算在浏览器中完成，不上传用户输入。
