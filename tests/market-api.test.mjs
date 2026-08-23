@@ -26,8 +26,8 @@ test("CloudBase capability states distinguish verified ETF history from catalog-
   const response = await main({ httpMethod: "GET", path: "/v1/capabilities", headers: { "x-forwarded-for": `capability-test-${Date.now()}` } });
   assert.equal(response.statusCode, 200);
   const rows = JSON.parse(response.body);
-  assert.equal(rows.find((item) => item.id === "US:QQQ")?.status, "verified-history");
-  assert.equal(rows.find((item) => item.id === "CN:159919")?.status, "pack-pending");
+  assert.equal(rows.find((item) => item.id === "US:QQQ")?.status, "history-available");
+  assert.equal(rows.find((item) => item.id === "CN:159919")?.status, "history-available");
   assert.equal(rows.find((item) => item.id === "CN:600900")?.status, "catalog-only");
 });
 
@@ -39,7 +39,7 @@ test("CloudBase loads manifest and one ETF history at a time", async () => {
   const historyResponse = await main({ httpMethod: "GET", path: "/v1/history", queryStringParameters: { id: "US:QQQ" }, headers: { "x-forwarded-for": client } });
   assert.equal(historyResponse.statusCode, 200);
   assert.ok(JSON.parse(historyResponse.body).points.length > 1000);
-  const pendingResponse = await main({ httpMethod: "GET", path: "/v1/history", queryStringParameters: { id: "CN:159919" }, headers: { "x-forwarded-for": client } });
-  assert.equal(pendingResponse.statusCode, 404);
-  assert.equal(JSON.parse(pendingResponse.body).error, "history_pending");
+  const cnResponse = await main({ httpMethod: "GET", path: "/v1/history", queryStringParameters: { id: "CN:159919" }, headers: { "x-forwarded-for": client } });
+  assert.equal(cnResponse.statusCode, 200);
+  assert.ok(JSON.parse(cnResponse.body).points.length > 1000);
 });

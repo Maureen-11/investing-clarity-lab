@@ -47,14 +47,6 @@ test("ships a broad, linked three-market security directory", async () => {
   assert.match(byId.get("CN:510300")?.name ?? "", /300ETF/);
 });
 
-test("ships verified replay histories for the first ETF cohort", async () => {
-  const history = JSON.parse(await readFile(new URL("../public/data/etf-history.json", import.meta.url), "utf8"));
-  for (const symbol of ["QQQ", "VOO", "SPY", "VTI", "VT", "SCHX"]) {
-    assert.ok(history[symbol].points.length > 1000, `${symbol} history is too short`);
-    assert.match(history[symbol].source, /复权收盘价/);
-  }
-});
-
 test("ships the curated 100 ETF manifest and lazy history files", async () => {
   const manifest = JSON.parse(await readFile(new URL("../public/data/etf-pack-manifest.json", import.meta.url), "utf8"));
   assert.deepEqual(manifest.counts, { total: 100, CN: 50, US: 35, HK: 15 });
@@ -62,6 +54,7 @@ test("ships the curated 100 ETF manifest and lazy history files", async () => {
     assert.ok(manifest.entries.some((entry) => entry.id === id), `${id} missing from pack`);
   }
   const qqq = JSON.parse(await readFile(new URL("../public/data/etf-history/US/QQQ.json", import.meta.url), "utf8"));
-  assert.equal(qqq.seriesType, "etf-total-return");
+  assert.equal(qqq.seriesType, "vendor-adjusted-price");
   assert.equal(qqq.licenseStatus, "not-confirmed");
+  assert.ok(manifest.entries.every((entry) => entry.historyPath && entry.dataStatus === "history-available"));
 });

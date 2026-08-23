@@ -102,7 +102,7 @@ async function main(event) {
       return response(200, directory.map((item) => ({
         id: item.id,
         mode: manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "etf-replay" : "catalog-only",
-        status: manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "verified-history" : manifestById.has(item.id) ? "pack-pending" : "catalog-only",
+        status: manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "history-available" : manifestById.has(item.id) ? "pack-pending" : "catalog-only",
       })));
     }
     return response(404, { error: "not_found", message: "内测接口路径不存在。" });

@@ -12,6 +12,7 @@ test("directory entries are not mistaken for ETF history", () => {
   assert.equal(capabilityFor(etf, undefined, packEntry).status, "pack-pending");
   assert.match(capabilityFor(etf, undefined, packEntry).description, /100只主流ETF/);
   assert.equal(capabilityFor(etf, history).mode, "etf-replay");
+  assert.equal(capabilityFor(etf, history).status, "history-available");
   assert.equal(capabilityFor(stock).status, "catalog-only");
   assert.equal(capabilityFor(stock, history).mode, "stock-facts");
   assert.match(capabilityFor(stock, history).description, /个股/);
