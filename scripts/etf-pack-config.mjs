@@ -27,3 +27,31 @@ export const ETF_PACK_GROUPS = {
 
 export const ETF_PACK_EXPECTED = { CN: 50, US: 35, HK: 15 };
 export const LEGACY_HISTORY_SYMBOLS = new Set(["QQQ", "VOO", "SPY", "VTI", "VT", "SCHX"]);
+
+// Fixed provider identifiers prevent ambiguous symbol search results such as
+// XLF (which can otherwise be mistaken for an A-share security name).
+export const EASTMONEY_US_QUOTE_IDS = {
+  VOO: "107.VOO", SPY: "107.SPY", VTI: "107.VTI", QQQ: "105.QQQ",
+  DIA: "107.DIA", IWM: "107.IWM", RSP: "107.RSP", SCHX: "107.SCHX",
+  SCHD: "107.SCHD", VIG: "107.VIG", DGRO: "107.DGRO", VTV: "107.VTV",
+  VUG: "107.VUG", USMV: "107.USMV", QUAL: "107.QUAL", VT: "107.VT",
+  VXUS: "105.VXUS", VEA: "107.VEA", VWO: "107.VWO", ACWI: "105.ACWI",
+  XLK: "107.XLK", XLF: "107.XLF", XLV: "107.XLV", XLE: "107.XLE",
+  XLI: "107.XLI", XLY: "107.XLY", BND: "105.BND", AGG: "107.AGG",
+  TLT: "107.TLT", LQD: "107.LQD", HYG: "107.HYG", GLD: "107.GLD",
+  IAU: "107.IAU", VNQ: "107.VNQ", TIP: "107.TIP",
+};
+
+export function eastmoneyQuoteId(market, symbol) {
+  if (market === "CN") return `${symbol.startsWith("159") ? "0" : "1"}.${symbol}`;
+  if (market === "HK") return `116.${symbol}`;
+  const quoteId = EASTMONEY_US_QUOTE_IDS[symbol];
+  if (!quoteId) throw new Error(`Missing Eastmoney provider id for US:${symbol}`);
+  return quoteId;
+}
+
+export function eastmoneySourceUrl(market, symbol) {
+  if (market === "CN") return `https://quote.eastmoney.com/${symbol.startsWith("159") ? "sz" : "sh"}${symbol}.html`;
+  if (market === "HK") return `https://quote.eastmoney.com/hk/${symbol}.html`;
+  return `https://quote.eastmoney.com/us/${symbol}.html`;
+}

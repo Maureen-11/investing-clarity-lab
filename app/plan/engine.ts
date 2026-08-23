@@ -42,9 +42,12 @@ export type HistorySeries = {
   lastDate: string;
   points: [string, number][];
   /** Optional provenance fields populated by licensed providers in later phases. */
-  seriesType?: "etf-total-return" | "index-total-return" | "price-only";
+  seriesType?: "etf-total-return" | "index-total-return" | "price-only" | "vendor-adjusted-price";
   licenseStatus?: "verified" | "pending" | "not-confirmed";
   sourceUrl?: string;
+  provider?: string;
+  providerSymbol?: string;
+  adjustment?: "forward-adjusted" | "back-adjusted" | "none";
   proxyUntil?: string;
   proxyLabel?: string;
 };
@@ -67,7 +70,10 @@ export type EtfPackEntry = {
   sourceUrl: string | null;
   historyPath: string | null;
   seriesType: HistorySeries["seriesType"] | null;
-  dataStatus: "verified-history" | "metadata-only";
+  adjustment?: HistorySeries["adjustment"] | null;
+  provider?: string | null;
+  providerSymbol?: string | null;
+  dataStatus: "verified-history" | "history-available" | "metadata-only";
   licenseStatus: "verified" | "pending" | "not-confirmed";
   publicHistoryEligible: boolean;
 };
@@ -113,6 +119,7 @@ export type Replay = {
   recoveryDays: number;
   estimatedDirectFee: number;
   feeDrag: number;
+  feeRateKnown: boolean;
   inflationFactor: number;
   startFx: number;
   endFx: number;
@@ -368,6 +375,8 @@ function contributionIndices(points: [string, number][], startIndex: number, end
 }
 
 export function replayWindow(points: [string, number][], startIndex: number, endIndex: number, options: ReplayOptions, capturePath = false, anchorDate = points[startIndex][0]): Replay {
+  const feeRateKnown = Number.isFinite(options.feeRate);
+  const feeRate = feeRateKnown ? options.feeRate : 0;
   const startDate = points[startIndex][0];
   const startFx = fxAtDate(options, startDate);
   const firstBuy = buy(options.initial, 0, points[startIndex][1], startFx, options.unitMode, options.lotSize);
@@ -392,7 +401,7 @@ export function replayWindow(points: [string, number][], startIndex: number, end
     const [date, price] = points[index];
     const shouldInvest = scheduled.has(index);
     const elapsedYears = dayDistance(startDate, date) / 365.25;
-    const noFeePrice = price * Math.exp(options.feeRate / 100 * elapsedYears);
+    const noFeePrice = price * Math.exp(feeRate / 100 * elapsedYears);
     const fxRate = fxAtDate(options, date);
     if (shouldInvest) {
       const payment = options.payment * (options.contributionGrowth ? purchasingPowerFactor(options, anchorDate, date) : 1);
@@ -413,7 +422,7 @@ export function replayWindow(points: [string, number][], startIndex: number, end
     } else productMaxDrawdown = Math.min(productMaxDrawdown, price / peakPrice - 1);
     const value = (shares * price + cashQuote) * fxRate;
     if (principal > 0) accountWorstReturn = Math.min(accountWorstReturn, value / principal - 1);
-    if (index > startIndex) estimatedDirectFee += shares * price * fxRate * (options.feeRate / 100) / 365.25;
+    if (index > startIndex) estimatedDirectFee += shares * price * fxRate * (feeRate / 100) / 365.25;
     if (capturePath && (index === startIndex || index === endIndex || index % 21 === 0)) {
       const factor = purchasingPowerFactor(options, anchorDate, date);
       path.push({ date, value, principal, realValue: value / factor, realPrincipal });
@@ -424,7 +433,7 @@ export function replayWindow(points: [string, number][], startIndex: number, end
   const elapsed = dayDistance(startDate, points[endIndex][0]) / 365.25;
   const endFx = fxAtDate(options, points[endIndex][0]);
   const endValue = (shares * endPrice + cashQuote) * endFx;
-  const noFeeEndPrice = endPrice * Math.exp(options.feeRate / 100 * elapsed);
+  const noFeeEndPrice = endPrice * Math.exp(feeRate / 100 * elapsed);
   const noFeeEndValue = (noFeeShares * noFeeEndPrice + noFeeCashQuote) * endFx;
   const inflationFactor = purchasingPowerFactor(options, anchorDate, points[endIndex][0]);
   return {
@@ -443,6 +452,7 @@ export function replayWindow(points: [string, number][], startIndex: number, end
     recoveryDays: longestRecovery,
     estimatedDirectFee,
     feeDrag: Math.max(0, noFeeEndValue - endValue),
+    feeRateKnown,
     inflationFactor,
     startFx,
     endFx,

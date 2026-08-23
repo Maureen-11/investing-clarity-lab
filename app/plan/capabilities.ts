@@ -1,7 +1,7 @@
 import type { EtfPackEntry, HistorySeries, Security } from "./engine";
 
 export type AnalysisMode = "etf-replay" | "stock-facts" | "catalog-only";
-export type CapabilityStatus = "verified-history" | "facts-only" | "pack-pending" | "catalog-only";
+export type CapabilityStatus = "history-available" | "facts-only" | "pack-pending" | "catalog-only";
 
 export type AnalysisCapability = {
   mode: AnalysisMode;
@@ -25,9 +25,11 @@ export function capabilityFor(security: Security | null, history?: HistorySeries
   if (history && isFundLike(security)) {
     return {
       mode: "etf-replay",
-      status: "verified-history",
-      label: "可生成历史回放",
-      description: "有可核验的复权历史，可计算滚动窗口、回撤和定投路径。",
+      status: "history-available",
+      label: "可进行历史回放",
+      description: history.licenseStatus === "not-confirmed"
+        ? "已接入供应商复权历史，可计算定投路径和回撤；公开展示许可尚未确认。"
+        : "已接入复权历史，可计算定投路径、滚动窗口和回撤。",
     };
   }
   if (history && !isFundLike(security)) {
@@ -38,11 +40,19 @@ export function capabilityFor(security: Security | null, history?: HistorySeries
       description: "个股按价格、股息和回撤等事实展示，不套用 ETF 式长期结论。",
     };
   }
+  if (packEntry?.historyPath && packEntry.dataStatus === "history-available" && isFundLike(security)) {
+    return {
+      mode: "etf-replay",
+      status: "history-available",
+      label: "可进行历史回放",
+      description: "历史文件已就绪；选择后按需加载并计算定投路径和回撤。公开展示许可尚未确认。",
+    };
+  }
   if (packEntry && isFundLike(security)) {
     return {
       mode: "catalog-only",
       status: "pack-pending",
-      label: "主流ETF清单 · 历史待补",
+      label: "主流ETF清单 · 暂无历史",
       description: `已纳入100只主流ETF清单（${packEntry.category}），但暂无可公开使用的复权历史，因此不生成收益范围。`,
     };
   }

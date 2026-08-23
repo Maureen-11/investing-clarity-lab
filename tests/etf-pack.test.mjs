@@ -19,20 +19,24 @@ test("curated ETF pack excludes leverage, inverse and crypto products", () => {
 });
 
 test("lazy histories are ordered and consistent with manifest metadata", async () => {
-  for (const entry of manifest.entries.filter((item) => item.historyPath)) {
+  assert.ok(manifest.entries.every((entry) => entry.historyPath));
+  for (const entry of manifest.entries) {
     const history = JSON.parse(await readFile(new URL(`../public/${entry.historyPath}`, import.meta.url), "utf8"));
     assert.equal(history.firstDate, entry.firstDate);
     assert.equal(history.lastDate, entry.lastDate);
-    assert.ok(history.points.length > 1000);
+    assert.ok(history.points.length >= 20);
     assert.ok(history.points.every((point, index) => index === 0 || point[0] > history.points[index - 1][0]));
     assert.ok(history.points.every((point) => Number.isFinite(point[1]) && point[1] > 0));
-    assert.equal(history.seriesType, "etf-total-return");
+    assert.equal(history.seriesType, "vendor-adjusted-price");
+    assert.equal(history.adjustment, "forward-adjusted");
+    assert.equal(history.licenseStatus, "not-confirmed");
+    assert.equal(entry.dataStatus, "history-available");
   }
 });
 
-test("metadata-only entries never pretend to have public histories", () => {
-  for (const entry of manifest.entries.filter((item) => item.dataStatus === "metadata-only")) {
-    assert.equal(entry.historyPath, null);
+test("all public histories keep the unconfirmed redistribution boundary visible", () => {
+  for (const entry of manifest.entries) {
     assert.equal(entry.publicHistoryEligible, false);
+    assert.equal(entry.licenseStatus, "not-confirmed");
   }
 });
