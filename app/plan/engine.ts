@@ -1,5 +1,6 @@
 export type Frequency = "daily" | "monthly" | "yearly";
 export type Market = "US" | "CN" | "HK";
+export type InstrumentKind = "etf" | "index";
 export type MarketFilter = "ALL" | Market;
 export type UnitMode = "fractional" | "whole";
 export type FxMode = "historical" | "fixed";
@@ -15,6 +16,7 @@ export type Security = {
   aliases: string;
   source: string;
   updated: string;
+  instrumentKind?: InstrumentKind | "stock";
 };
 
 export type FundDetail = {
@@ -42,14 +44,17 @@ export type HistorySeries = {
   lastDate: string;
   points: [string, number][];
   /** Optional provenance fields populated by licensed providers in later phases. */
-  seriesType?: "etf-total-return" | "index-total-return" | "price-only" | "vendor-adjusted-price";
+  seriesType?: "etf-total-return" | "index-total-return" | "price-only" | "vendor-adjusted-price" | "vendor-cumulative-nav";
   licenseStatus?: "verified" | "pending" | "not-confirmed";
   sourceUrl?: string;
   provider?: string;
   providerSymbol?: string;
-  adjustment?: "forward-adjusted" | "back-adjusted" | "none";
+  adjustment?: "forward-adjusted" | "back-adjusted" | "cumulative-net-value-including-distributions" | "none";
   proxyUntil?: string;
   proxyLabel?: string;
+  instrumentKind?: InstrumentKind;
+  lastAttempt?: string;
+  updateWarning?: string;
 };
 export type HistoryLibrary = Record<string, HistorySeries>;
 
@@ -58,12 +63,26 @@ export type EtfPackEntry = {
   symbol: string;
   name: string;
   market: Market;
+  instrumentKind: InstrumentKind;
   category: string;
   benchmark: string | null;
+  trackingIndex?: string | null;
   issuer: string | null;
   fee: number | null;
   feeAsOf: string | null;
   inception: string | null;
+  listingDate?: string | null;
+  managementFee?: number | null;
+  custodianFee?: number | null;
+  feeLabel?: string | null;
+  distributionPolicy?: string | null;
+  quoteCurrency?: "USD" | "CNY" | "HKD";
+  metadataStatus?: "verified-official-detail" | "secondary-detail-with-official-listing" | "official-listing-only";
+  metadataAsOf?: string;
+  officialListingUrl?: string;
+  officialProductUrl?: string | null;
+  detailSourceUrl?: string | null;
+  detailSourceType?: "official" | "secondary" | null;
   firstDate: string | null;
   lastDate: string | null;
   retrieved: string | null;
@@ -78,13 +97,22 @@ export type EtfPackEntry = {
   publicHistoryEligible: boolean;
 };
 
+export type IndexPackEntry = Omit<EtfPackEntry, "issuer" | "benchmark" | "fee" | "feeAsOf" | "inception" | "publicHistoryEligible"> & {
+  instrumentKind: "index";
+  sourceUrl: string;
+  relatedEtfIds?: string[];
+  publicHistoryEligible: boolean;
+};
+
 export type EtfPackManifest = {
   version: number;
   generated: string;
-  scope: "curated-100";
+  scope: "curated-100" | "curated-300-plus-15-indices";
   counts: { total: number; CN: number; US: number; HK: number };
+  indexCounts?: { total: number; CN: number; US: number; HK: number };
   notes: string;
   entries: EtfPackEntry[];
+  indices?: IndexPackEntry[];
 };
 
 export type MacroSeries = {

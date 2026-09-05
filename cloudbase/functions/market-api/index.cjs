@@ -60,7 +60,7 @@ function looksLikeFund(item) {
 }
 
 function manifestEntryFor(manifest, id) {
-  return manifest.entries.find((entry) => entry.id === id);
+  return [...(manifest.entries || []), ...(manifest.indices || [])].find((entry) => entry.id === id);
 }
 
 async function main(event) {
@@ -76,7 +76,7 @@ async function main(event) {
       if (!id) return response(400, { error: "missing_id", message: "请选择一个ETF后再加载历史。" });
       const manifest = await readData("etf-pack-manifest.json");
       const entry = manifestEntryFor(manifest, id);
-      if (!entry) return response(404, { error: "not_in_pack", message: "该证券不在100只主流ETF清单中。" });
+      if (!entry) return response(404, { error: "not_in_pack", message: "该证券不在300只主流ETF或15个参照指数清单中。" });
       if (!entry.historyPath) return response(404, { error: "history_pending", message: "清单已核验，但历史数据和公开展示权限仍待补齐。" });
       const relativePath = entry.historyPath.replace(/^data\//, "");
       if (!/^[A-Za-z0-9_./-]+$/.test(relativePath) || relativePath.includes("..")) return response(400, { error: "invalid_path" });
@@ -98,11 +98,12 @@ async function main(event) {
     if (pathname === "/v1/capabilities") {
       const directory = await readData("securities.json");
       const manifest = await readData("etf-pack-manifest.json");
-      const manifestById = new Map(manifest.entries.map((entry) => [entry.id, entry]));
-      return response(200, directory.map((item) => ({
+      const manifestById = new Map([...(manifest.entries || []), ...(manifest.indices || [])].map((entry) => [entry.id, entry]));
+      const indices = (manifest.indices || []).map((item) => ({ ...item, assetType: "指数" }));
+      return response(200, [...directory, ...indices].map((item) => ({
         id: item.id,
-        mode: manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "etf-replay" : "catalog-only",
-        status: manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "history-available" : manifestById.has(item.id) ? "pack-pending" : "catalog-only",
+        mode: item.instrumentKind === "index" ? "index-context" : manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "etf-replay" : "catalog-only",
+        status: item.instrumentKind === "index" ? "index-context" : manifestById.get(item.id)?.historyPath && looksLikeFund(item) ? "history-available" : manifestById.has(item.id) ? "pack-pending" : "catalog-only",
       })));
     }
     return response(404, { error: "not_found", message: "内测接口路径不存在。" });

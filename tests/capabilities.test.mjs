@@ -10,12 +10,19 @@ const packEntry = { id: "US:ZZZ", symbol: "ZZZ", name: "Example ETF", market: "U
 test("directory entries are not mistaken for ETF history", () => {
   assert.equal(capabilityFor(etf).status, "catalog-only");
   assert.equal(capabilityFor(etf, undefined, packEntry).status, "pack-pending");
-  assert.match(capabilityFor(etf, undefined, packEntry).description, /100只主流ETF/);
+  assert.match(capabilityFor(etf, undefined, packEntry).description, /300只主流ETF/);
   assert.equal(capabilityFor(etf, history).mode, "etf-replay");
   assert.equal(capabilityFor(etf, history).status, "history-available");
   assert.equal(capabilityFor(stock).status, "catalog-only");
   assert.equal(capabilityFor(stock, history).mode, "stock-facts");
   assert.match(capabilityFor(stock, history).description, /个股/);
+});
+
+test("indices use context analysis and cannot enter ETF replay", () => {
+  const index = { ...etf, id: "US:INDEX_SP500", symbol: "S&P 500", name: "S&P 500 Index", assetType: "指数", instrumentKind: "index" };
+  const indexHistory = { ...history, instrumentKind: "index", seriesType: "price-only", adjustment: "none" };
+  assert.equal(capabilityFor(index, indexHistory).mode, "index-context");
+  assert.equal(capabilityFor(index, indexHistory).status, "index-context");
 });
 
 test("history lookup prefers market-qualified ids and supports legacy symbols", () => {
