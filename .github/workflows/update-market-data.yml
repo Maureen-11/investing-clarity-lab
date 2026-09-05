@@ -12,6 +12,10 @@ on:
         description: Re-read product metadata sources
         type: boolean
         default: false
+      dry_run:
+        description: Run the complete download, validation and build without pushing or opening a PR
+        type: boolean
+        default: false
 
 concurrency:
   group: weekly-etf-data
@@ -48,8 +52,16 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build:pages
+      - name: Summarize dry run
+        if: inputs.dry_run == true
+        shell: bash
+        run: |
+          echo "Dry run completed: no branch push or pull request will be created."
+          git status --short -- public/data/etf-history public/data/index-history public/data/etf-product-metadata.json public/data/etf-pack-manifest.json
+
       - name: Commit the complete snapshot to the update branch
         id: commit
+        if: inputs.dry_run != true
         shell: bash
         run: |
           if git diff --quiet -- public/data/etf-history public/data/index-history public/data/etf-product-metadata.json public/data/etf-pack-manifest.json; then
