@@ -47,9 +47,10 @@ test("ships a broad, linked three-market security directory", async () => {
   assert.match(byId.get("CN:510300")?.name ?? "", /300ETF/);
 });
 
-test("ships the curated 100 ETF manifest and lazy history files", async () => {
+test("ships the curated 300 ETF and 15 index manifest with lazy history files", async () => {
   const manifest = JSON.parse(await readFile(new URL("../public/data/etf-pack-manifest.json", import.meta.url), "utf8"));
-  assert.deepEqual(manifest.counts, { total: 100, CN: 50, US: 35, HK: 15 });
+  assert.deepEqual(manifest.counts, { total: 300, CN: 150, US: 105, HK: 45 });
+  assert.deepEqual(manifest.indexCounts, { total: 15, CN: 7, US: 5, HK: 3 });
   for (const id of ["CN:159919", "CN:510300", "CN:510880", "CN:512890", "US:QQQ", "US:VOO", "HK:02800", "HK:03033"]) {
     assert.ok(manifest.entries.some((entry) => entry.id === id), `${id} missing from pack`);
   }
@@ -57,4 +58,5 @@ test("ships the curated 100 ETF manifest and lazy history files", async () => {
   assert.equal(qqq.seriesType, "vendor-adjusted-price");
   assert.equal(qqq.licenseStatus, "not-confirmed");
   assert.ok(manifest.entries.every((entry) => entry.historyPath && entry.dataStatus === "history-available"));
+  assert.ok(manifest.indices.every((entry) => entry.historyPath && entry.instrumentKind === "index"));
 });

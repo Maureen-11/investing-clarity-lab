@@ -1,7 +1,7 @@
 import type { EtfPackEntry, HistorySeries, Security } from "./engine";
 
-export type AnalysisMode = "etf-replay" | "stock-facts" | "catalog-only";
-export type CapabilityStatus = "history-available" | "facts-only" | "pack-pending" | "catalog-only";
+export type AnalysisMode = "etf-replay" | "index-context" | "stock-facts" | "catalog-only";
+export type CapabilityStatus = "history-available" | "index-context" | "facts-only" | "pack-pending" | "catalog-only";
 
 export type AnalysisCapability = {
   mode: AnalysisMode;
@@ -16,12 +16,24 @@ export function isFundLike(security: Security | null | undefined) {
   return value.includes("etf") || value.includes("基金") || value.includes("reit") || value.includes("exchange traded");
 }
 
+export function isIndex(security: Security | null | undefined, packEntry?: EtfPackEntry) {
+  return security?.instrumentKind === "index" || packEntry?.instrumentKind === "index";
+}
+
 /**
  * A security can be searchable without having a licensed, verifiable history.
  * This intentionally keeps that distinction explicit instead of treating every
  * directory entry as an ETF-style long-term conclusion candidate.
  */
 export function capabilityFor(security: Security | null, history?: HistorySeries, packEntry?: EtfPackEntry): AnalysisCapability {
+  if (isIndex(security, packEntry) && history) {
+    return {
+      mode: "index-context",
+      status: "index-context",
+      label: "指数市场参照",
+      description: "这是不可直接购买的指数，只展示年度表现和回撤，并引导到对应ETF；不会生成指数定投结果。",
+    };
+  }
   if (history && isFundLike(security)) {
     return {
       mode: "etf-replay",
@@ -53,7 +65,7 @@ export function capabilityFor(security: Security | null, history?: HistorySeries
       mode: "catalog-only",
       status: "pack-pending",
       label: "主流ETF清单 · 暂无历史",
-      description: `已纳入100只主流ETF清单（${packEntry.category}），但暂无可公开使用的复权历史，因此不生成收益范围。`,
+      description: `已纳入300只主流ETF清单（${packEntry.category}），但暂无可核验的复权历史，因此不生成收益范围。`,
     };
   }
   return {

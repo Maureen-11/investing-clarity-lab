@@ -4,7 +4,14 @@ on:
   schedule:
     # Monday 10:00 Asia/Shanghai, after the previous week's markets have closed.
     - cron: "0 2 * * 1"
+    # Quarterly product-document refresh (January, April, July and October).
+    - cron: "0 3 1 1,4,7,10 *"
   workflow_dispatch:
+    inputs:
+      refresh_metadata:
+        description: Re-read product metadata sources
+        type: boolean
+        default: false
 
 concurrency:
   group: weekly-etf-data
@@ -13,6 +20,7 @@ concurrency:
 permissions:
   contents: write
   actions: write
+  pull-requests: write
 
 jobs:
   update:
@@ -28,29 +36,42 @@ jobs:
           node-version: "22.13.0"
           cache: npm
       - run: npm ci
-      - name: Download and validate all 100 ETF histories
-        run: npm run data:update:market
+      - name: Download and validate all 300 ETF and 15 index histories
+        run: node scripts/build_etf_history.mjs
         env:
           ETF_FETCH_PAUSE_MS: "500"
+      - name: Refresh product documents on the quarterly run
+        if: github.event.schedule == '0 3 1 1,4,7,10 *' || inputs.refresh_metadata == true
+        run: node scripts/build_product_metadata.mjs
+      - name: Build and validate the complete manifest
+        run: npm run data:etf-pack && npm run data:validate
       - run: npm run lint
       - run: npm test
       - run: npm run build:pages
-      - name: Commit the complete snapshot only
+      - name: Commit the complete snapshot to the update branch
         id: commit
         shell: bash
         run: |
-          if git diff --quiet -- public/data/etf-history public/data/etf-pack-manifest.json; then
+          if git diff --quiet -- public/data/etf-history public/data/index-history public/data/etf-product-metadata.json public/data/etf-pack-manifest.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/etf-history public/data/etf-pack-manifest.json
-          git commit -m "data: refresh 100 ETF histories"
-          git push origin HEAD:main
+          git switch -C automation/weekly-market-data
+          git add public/data/etf-history public/data/index-history public/data/etf-product-metadata.json public/data/etf-pack-manifest.json
+          git commit -m "data: refresh 300 ETF and 15 index histories"
+          git push --force-with-lease origin automation/weekly-market-data
           echo "changed=true" >> "$GITHUB_OUTPUT"
-      - name: Publish the validated Pages build
+      - name: Create or update the review pull request
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run pages.yml --ref main
+        shell: bash
+        run: |
+          if gh pr view automation/weekly-market-data --json number >/dev/null 2>&1; then
+            gh pr edit automation/weekly-market-data --title "data: weekly market snapshot" --body "Automated complete snapshot for 300 ETFs and 15 reference indices. Please review and merge manually; this workflow never pushes directly to protected main."
+          else
+            gh pr create --base main --head automation/weekly-market-data --title "data: weekly market snapshot" --body "Automated complete snapshot for 300 ETFs and 15 reference indices. Please review and merge manually; this workflow never pushes directly to protected main."
+          fi
+          gh workflow run ci.yml --ref automation/weekly-market-data
