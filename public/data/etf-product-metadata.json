@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-04",
+  "generated": "2026-10-01",
   "notes": "交易所/SEC链接用于核对证券身份；部分A股结构化字段来自天天基金并明确标为二手来源。无法核验的字段保持为空，不以推测补齐。",
   "entries": {
     "CN:510050": {
@@ -25,7 +25,8 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510050.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-09-04",
+      "metadataWarning": "资料页本次读取失败：fetch failed"
     },
     "CN:510300": {
       "id": "CN:510300",
@@ -49,7 +50,8 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510300.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-09-04",
+      "metadataWarning": "资料页本次读取失败：fetch failed"
     },
     "CN:159919": {
       "id": "CN:159919",
@@ -73,7 +75,8 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159919.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-09-04",
+      "metadataWarning": "资料页本次读取失败：fetch failed"
     },
     "CN:510500": {
       "id": "CN:510500",
@@ -97,7 +100,8 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510500.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-09-04",
+      "metadataWarning": "资料页本次读取失败：fetch failed"
     },
     "CN:512100": {
       "id": "CN:512100",
@@ -121,7 +125,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512100.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512020": {
       "id": "CN:512020",
@@ -145,7 +149,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510210": {
       "id": "CN:510210",
@@ -169,7 +173,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510210.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159901": {
       "id": "CN:159901",
@@ -193,7 +197,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159901.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159915": {
       "id": "CN:159915",
@@ -217,7 +221,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159915.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159949": {
       "id": "CN:159949",
@@ -241,7 +245,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159949.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:588000": {
       "id": "CN:588000",
@@ -265,7 +269,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_588000.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:588030": {
       "id": "CN:588030",
@@ -289,7 +293,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_588030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510140": {
       "id": "CN:510140",
@@ -313,7 +317,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510140.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510180": {
       "id": "CN:510180",
@@ -337,7 +341,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510180.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510310": {
       "id": "CN:510310",
@@ -361,7 +365,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510310.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510330": {
       "id": "CN:510330",
@@ -385,7 +389,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510330.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510510": {
       "id": "CN:510510",
@@ -409,7 +413,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510510.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512050": {
       "id": "CN:512050",
@@ -433,7 +437,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512050.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512500": {
       "id": "CN:512500",
@@ -457,7 +461,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512500.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512510": {
       "id": "CN:512510",
@@ -481,7 +485,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512510.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515130": {
       "id": "CN:515130",
@@ -505,7 +509,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515130.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515800": {
       "id": "CN:515800",
@@ -529,7 +533,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515800.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516300": {
       "id": "CN:516300",
@@ -553,7 +557,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516300.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560010": {
       "id": "CN:560010",
@@ -577,7 +581,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560010.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560050": {
       "id": "CN:560050",
@@ -601,7 +605,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560050.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560100": {
       "id": "CN:560100",
@@ -625,7 +629,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560100.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560110": {
       "id": "CN:560110",
@@ -649,7 +653,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560110.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510290": {
       "id": "CN:510290",
@@ -673,7 +677,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510290.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512150": {
       "id": "CN:512150",
@@ -697,7 +701,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512150.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515810": {
       "id": "CN:515810",
@@ -721,7 +725,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515810.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510880": {
       "id": "CN:510880",
@@ -745,7 +749,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512890": {
       "id": "CN:512890",
@@ -769,7 +773,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512890.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515180": {
       "id": "CN:515180",
@@ -793,7 +797,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515180.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515080": {
       "id": "CN:515080",
@@ -817,7 +821,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515080.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515450": {
       "id": "CN:515450",
@@ -841,7 +845,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515450.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515460": {
       "id": "CN:515460",
@@ -865,7 +869,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515460.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515910": {
       "id": "CN:515910",
@@ -889,7 +893,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515910.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:561630": {
       "id": "CN:561630",
@@ -913,7 +917,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_561630.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:561060": {
       "id": "CN:561060",
@@ -937,7 +941,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_561060.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:563390": {
       "id": "CN:563390",
@@ -961,7 +965,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_563390.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510030": {
       "id": "CN:510030",
@@ -985,7 +989,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510720": {
       "id": "CN:510720",
@@ -1009,7 +1013,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510720.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512040": {
       "id": "CN:512040",
@@ -1033,7 +1037,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512040.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512260": {
       "id": "CN:512260",
@@ -1057,7 +1061,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512260.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512390": {
       "id": "CN:512390",
@@ -1081,7 +1085,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512390.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560030": {
       "id": "CN:560030",
@@ -1105,7 +1109,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515100": {
       "id": "CN:515100",
@@ -1129,7 +1133,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515100.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515300": {
       "id": "CN:515300",
@@ -1153,7 +1157,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515300.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515480": {
       "id": "CN:515480",
@@ -1177,7 +1181,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515480.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515890": {
       "id": "CN:515890",
@@ -1201,7 +1205,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515890.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560020": {
       "id": "CN:560020",
@@ -1225,7 +1229,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560070": {
       "id": "CN:560070",
@@ -1249,7 +1253,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560070.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560250": {
       "id": "CN:560250",
@@ -1273,7 +1277,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560250.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:561080": {
       "id": "CN:561080",
@@ -1297,7 +1301,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_561080.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:563020": {
       "id": "CN:563020",
@@ -1321,7 +1325,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_563020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:588080": {
       "id": "CN:588080",
@@ -1345,7 +1349,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_588080.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512760": {
       "id": "CN:512760",
@@ -1369,7 +1373,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512760.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512480": {
       "id": "CN:512480",
@@ -1393,7 +1397,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512480.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515000": {
       "id": "CN:515000",
@@ -1417,7 +1421,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515000.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515030": {
       "id": "CN:515030",
@@ -1441,7 +1445,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159995": {
       "id": "CN:159995",
@@ -1465,7 +1469,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159995.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159998": {
       "id": "CN:159998",
@@ -1489,7 +1493,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159998.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515070": {
       "id": "CN:515070",
@@ -1513,7 +1517,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515070.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512720": {
       "id": "CN:512720",
@@ -1537,7 +1541,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512720.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512930": {
       "id": "CN:512930",
@@ -1561,7 +1565,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512930.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515050": {
       "id": "CN:515050",
@@ -1585,7 +1589,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515050.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515120": {
       "id": "CN:515120",
@@ -1609,7 +1613,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515120.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515230": {
       "id": "CN:515230",
@@ -1633,7 +1637,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515230.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515400": {
       "id": "CN:515400",
@@ -1657,7 +1661,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515400.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515580": {
       "id": "CN:515580",
@@ -1681,7 +1685,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515580.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515700": {
       "id": "CN:515700",
@@ -1705,7 +1709,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515700.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515750": {
       "id": "CN:515750",
@@ -1729,7 +1733,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515750.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515880": {
       "id": "CN:515880",
@@ -1753,7 +1757,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515980": {
       "id": "CN:515980",
@@ -1777,7 +1781,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515980.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516000": {
       "id": "CN:516000",
@@ -1801,7 +1805,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516000.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516060": {
       "id": "CN:516060",
@@ -1825,7 +1829,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516060.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516080": {
       "id": "CN:516080",
@@ -1849,7 +1853,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516080.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516350": {
       "id": "CN:516350",
@@ -1873,7 +1877,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516350.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516510": {
       "id": "CN:516510",
@@ -1897,7 +1901,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516510.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516630": {
       "id": "CN:516630",
@@ -1921,7 +1925,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516630.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512010": {
       "id": "CN:512010",
@@ -1945,7 +1949,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512010.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512170": {
       "id": "CN:512170",
@@ -1969,7 +1973,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512170.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512660": {
       "id": "CN:512660",
@@ -1993,7 +1997,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512660.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512690": {
       "id": "CN:512690",
@@ -2017,7 +2021,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512690.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512800": {
       "id": "CN:512800",
@@ -2041,7 +2045,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512800.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512880": {
       "id": "CN:512880",
@@ -2065,7 +2069,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515220": {
       "id": "CN:515220",
@@ -2089,7 +2093,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515220.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512400": {
       "id": "CN:512400",
@@ -2113,7 +2117,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512400.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510150": {
       "id": "CN:510150",
@@ -2137,7 +2141,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510150.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510230": {
       "id": "CN:510230",
@@ -2161,7 +2165,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510230.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510650": {
       "id": "CN:510650",
@@ -2185,7 +2189,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510650.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510660": {
       "id": "CN:510660",
@@ -2209,7 +2213,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510660.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512070": {
       "id": "CN:512070",
@@ -2233,7 +2237,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512070.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512120": {
       "id": "CN:512120",
@@ -2257,7 +2261,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512120.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512140": {
       "id": "CN:512140",
@@ -2281,7 +2285,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512140.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512200": {
       "id": "CN:512200",
@@ -2305,7 +2309,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512200.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512290": {
       "id": "CN:512290",
@@ -2329,7 +2333,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512290.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512410": {
       "id": "CN:512410",
@@ -2353,7 +2357,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512410.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516020": {
       "id": "CN:516020",
@@ -2377,7 +2381,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512560": {
       "id": "CN:512560",
@@ -2401,7 +2405,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512560.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512600": {
       "id": "CN:512600",
@@ -2425,7 +2429,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512600.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512620": {
       "id": "CN:512620",
@@ -2449,7 +2453,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512620.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512700": {
       "id": "CN:512700",
@@ -2473,7 +2477,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512700.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512730": {
       "id": "CN:512730",
@@ -2497,7 +2501,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512730.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512810": {
       "id": "CN:512810",
@@ -2521,7 +2525,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512810.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512980": {
       "id": "CN:512980",
@@ -2545,7 +2549,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512980.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515010": {
       "id": "CN:515010",
@@ -2569,7 +2573,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515010.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515020": {
       "id": "CN:515020",
@@ -2593,7 +2597,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:515210": {
       "id": "CN:515210",
@@ -2617,7 +2621,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_515210.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:516110": {
       "id": "CN:516110",
@@ -2641,7 +2645,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_516110.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:159941": {
       "id": "CN:159941",
@@ -2665,7 +2669,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_159941.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513100": {
       "id": "CN:513100",
@@ -2689,7 +2693,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513100.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513500": {
       "id": "CN:513500",
@@ -2713,7 +2717,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513500.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513050": {
       "id": "CN:513050",
@@ -2737,7 +2741,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513050.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513330": {
       "id": "CN:513330",
@@ -2761,7 +2765,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513330.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513520": {
       "id": "CN:513520",
@@ -2785,7 +2789,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513520.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510900": {
       "id": "CN:510900",
@@ -2809,7 +2813,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510900.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513000": {
       "id": "CN:513000",
@@ -2833,7 +2837,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513000.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513030": {
       "id": "CN:513030",
@@ -2857,7 +2861,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513080": {
       "id": "CN:513080",
@@ -2881,7 +2885,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513080.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513110": {
       "id": "CN:513110",
@@ -2905,7 +2909,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513110.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513210": {
       "id": "CN:513210",
@@ -2929,7 +2933,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513210.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513390": {
       "id": "CN:513390",
@@ -2953,7 +2957,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513390.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513600": {
       "id": "CN:513600",
@@ -2977,7 +2981,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513600.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513650": {
       "id": "CN:513650",
@@ -3001,7 +3005,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513650.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513660": {
       "id": "CN:513660",
@@ -3025,7 +3029,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513660.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513720": {
       "id": "CN:513720",
@@ -3049,7 +3053,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513720.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513810": {
       "id": "CN:513810",
@@ -3073,7 +3077,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513810.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513850": {
       "id": "CN:513850",
@@ -3097,7 +3101,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513850.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:513880": {
       "id": "CN:513880",
@@ -3121,7 +3125,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_513880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511010": {
       "id": "CN:511010",
@@ -3145,7 +3149,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511010.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511260": {
       "id": "CN:511260",
@@ -3169,7 +3173,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511260.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511880": {
       "id": "CN:511880",
@@ -3193,7 +3197,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511360": {
       "id": "CN:511360",
@@ -3217,7 +3221,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511360.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511020": {
       "id": "CN:511020",
@@ -3241,7 +3245,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511020.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511030": {
       "id": "CN:511030",
@@ -3265,7 +3269,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511030.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511090": {
       "id": "CN:511090",
@@ -3289,7 +3293,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511090.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511100": {
       "id": "CN:511100",
@@ -3313,7 +3317,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511100.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511180": {
       "id": "CN:511180",
@@ -3337,7 +3341,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511180.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511200": {
       "id": "CN:511200",
@@ -3361,7 +3365,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511200.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511520": {
       "id": "CN:511520",
@@ -3385,7 +3389,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511520.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:511060": {
       "id": "CN:511060",
@@ -3409,7 +3413,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_511060.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:518880": {
       "id": "CN:518880",
@@ -3433,7 +3437,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_518880.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:518800": {
       "id": "CN:518800",
@@ -3457,7 +3461,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_518800.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:510170": {
       "id": "CN:510170",
@@ -3481,7 +3485,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_510170.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:517400": {
       "id": "CN:517400",
@@ -3505,7 +3509,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_517400.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:518660": {
       "id": "CN:518660",
@@ -3529,7 +3533,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_518660.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:518850": {
       "id": "CN:518850",
@@ -3553,7 +3557,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_518850.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:560470": {
       "id": "CN:560470",
@@ -3577,7 +3581,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_560470.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "CN:512940": {
       "id": "CN:512940",
@@ -3601,7 +3605,7 @@
       "detailSourceUrl": "https://fundf10.eastmoney.com/jbgk_512940.html",
       "detailSourceType": "secondary",
       "metadataStatus": "secondary-detail-with-official-listing",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VOO": {
       "id": "US:VOO",
@@ -3625,7 +3629,7 @@
       "detailSourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SPY": {
       "id": "US:SPY",
@@ -3649,7 +3653,7 @@
       "detailSourceUrl": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VTI": {
       "id": "US:VTI",
@@ -3673,7 +3677,7 @@
       "detailSourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:QQQ": {
       "id": "US:QQQ",
@@ -3697,7 +3701,7 @@
       "detailSourceUrl": "https://www.invesco.com/qqq-etf/en/home.html",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:DIA": {
       "id": "US:DIA",
@@ -3721,7 +3725,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IWM": {
       "id": "US:IWM",
@@ -3745,7 +3749,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:RSP": {
       "id": "US:RSP",
@@ -3769,7 +3773,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHX": {
       "id": "US:SCHX",
@@ -3793,7 +3797,7 @@
       "detailSourceUrl": "https://www.schwabassetmanagement.com/products/schx",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IVV": {
       "id": "US:IVV",
@@ -3817,7 +3821,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SPYM": {
       "id": "US:SPYM",
@@ -3841,7 +3845,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:ITOT": {
       "id": "US:ITOT",
@@ -3865,7 +3869,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHB": {
       "id": "US:SCHB",
@@ -3889,7 +3893,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SPTM": {
       "id": "US:SPTM",
@@ -3913,7 +3917,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VV": {
       "id": "US:VV",
@@ -3937,7 +3941,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IJH": {
       "id": "US:IJH",
@@ -3961,7 +3965,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IJR": {
       "id": "US:IJR",
@@ -3985,7 +3989,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VB": {
       "id": "US:VB",
@@ -4009,7 +4013,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:ONEQ": {
       "id": "US:ONEQ",
@@ -4033,7 +4037,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHD": {
       "id": "US:SCHD",
@@ -4057,7 +4061,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VIG": {
       "id": "US:VIG",
@@ -4081,7 +4085,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:DGRO": {
       "id": "US:DGRO",
@@ -4105,7 +4109,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VTV": {
       "id": "US:VTV",
@@ -4129,7 +4133,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VUG": {
       "id": "US:VUG",
@@ -4153,7 +4157,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:USMV": {
       "id": "US:USMV",
@@ -4177,7 +4181,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:QUAL": {
       "id": "US:QUAL",
@@ -4201,7 +4205,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:DVY": {
       "id": "US:DVY",
@@ -4225,7 +4229,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:HDV": {
       "id": "US:HDV",
@@ -4249,7 +4253,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SDY": {
       "id": "US:SDY",
@@ -4273,7 +4277,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SPHD": {
       "id": "US:SPHD",
@@ -4297,7 +4301,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:NOBL": {
       "id": "US:NOBL",
@@ -4321,7 +4325,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:DGRW": {
       "id": "US:DGRW",
@@ -4345,7 +4349,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IWD": {
       "id": "US:IWD",
@@ -4369,7 +4373,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IWF": {
       "id": "US:IWF",
@@ -4393,7 +4397,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:MTUM": {
       "id": "US:MTUM",
@@ -4417,7 +4421,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VLUE": {
       "id": "US:VLUE",
@@ -4441,7 +4445,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SIZE": {
       "id": "US:SIZE",
@@ -4465,7 +4469,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SPLV": {
       "id": "US:SPLV",
@@ -4489,7 +4493,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:COWZ": {
       "id": "US:COWZ",
@@ -4513,7 +4517,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VT": {
       "id": "US:VT",
@@ -4537,7 +4541,7 @@
       "detailSourceUrl": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
       "detailSourceType": "official",
       "metadataStatus": "verified-official-detail",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VXUS": {
       "id": "US:VXUS",
@@ -4561,7 +4565,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VEA": {
       "id": "US:VEA",
@@ -4585,7 +4589,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VWO": {
       "id": "US:VWO",
@@ -4609,7 +4613,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:ACWI": {
       "id": "US:ACWI",
@@ -4633,7 +4637,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IEFA": {
       "id": "US:IEFA",
@@ -4657,7 +4661,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IEMG": {
       "id": "US:IEMG",
@@ -4681,7 +4685,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:EFA": {
       "id": "US:EFA",
@@ -4705,7 +4709,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:EEM": {
       "id": "US:EEM",
@@ -4729,7 +4733,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHF": {
       "id": "US:SCHF",
@@ -4753,7 +4757,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHE": {
       "id": "US:SCHE",
@@ -4777,7 +4781,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IXUS": {
       "id": "US:IXUS",
@@ -4801,7 +4805,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VEU": {
       "id": "US:VEU",
@@ -4825,7 +4829,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:EWJ": {
       "id": "US:EWJ",
@@ -4849,7 +4853,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:EWG": {
       "id": "US:EWG",
@@ -4873,7 +4877,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLK": {
       "id": "US:XLK",
@@ -4897,7 +4901,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLF": {
       "id": "US:XLF",
@@ -4921,7 +4925,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLV": {
       "id": "US:XLV",
@@ -4945,7 +4949,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLE": {
       "id": "US:XLE",
@@ -4969,7 +4973,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLI": {
       "id": "US:XLI",
@@ -4993,7 +4997,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLY": {
       "id": "US:XLY",
@@ -5017,7 +5021,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLP": {
       "id": "US:XLP",
@@ -5041,7 +5045,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLU": {
       "id": "US:XLU",
@@ -5065,7 +5069,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLB": {
       "id": "US:XLB",
@@ -5089,7 +5093,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLRE": {
       "id": "US:XLRE",
@@ -5113,7 +5117,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XLC": {
       "id": "US:XLC",
@@ -5137,7 +5141,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SMH": {
       "id": "US:SMH",
@@ -5161,7 +5165,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SOXX": {
       "id": "US:SOXX",
@@ -5185,7 +5189,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IBB": {
       "id": "US:IBB",
@@ -5209,7 +5213,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XBI": {
       "id": "US:XBI",
@@ -5233,7 +5237,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IYR": {
       "id": "US:IYR",
@@ -5257,7 +5261,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:ITB": {
       "id": "US:ITB",
@@ -5281,7 +5285,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:XHB": {
       "id": "US:XHB",
@@ -5305,7 +5309,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:KRE": {
       "id": "US:KRE",
@@ -5329,7 +5333,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IHI": {
       "id": "US:IHI",
@@ -5353,7 +5357,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IGV": {
       "id": "US:IGV",
@@ -5377,7 +5381,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:ICLN": {
       "id": "US:ICLN",
@@ -5401,7 +5405,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:PAVE": {
       "id": "US:PAVE",
@@ -5425,7 +5429,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:BOTZ": {
       "id": "US:BOTZ",
@@ -5449,7 +5453,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:BND": {
       "id": "US:BND",
@@ -5473,7 +5477,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:AGG": {
       "id": "US:AGG",
@@ -5497,7 +5501,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:TLT": {
       "id": "US:TLT",
@@ -5521,7 +5525,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:LQD": {
       "id": "US:LQD",
@@ -5545,7 +5549,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:HYG": {
       "id": "US:HYG",
@@ -5569,7 +5573,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:BNDX": {
       "id": "US:BNDX",
@@ -5593,7 +5597,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VCIT": {
       "id": "US:VCIT",
@@ -5617,7 +5621,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VCSH": {
       "id": "US:VCSH",
@@ -5641,7 +5645,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VGIT": {
       "id": "US:VGIT",
@@ -5665,7 +5669,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VGSH": {
       "id": "US:VGSH",
@@ -5689,7 +5693,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IEF": {
       "id": "US:IEF",
@@ -5713,7 +5717,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SHY": {
       "id": "US:SHY",
@@ -5737,7 +5741,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:MUB": {
       "id": "US:MUB",
@@ -5761,7 +5765,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:EMB": {
       "id": "US:EMB",
@@ -5785,7 +5789,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SGOV": {
       "id": "US:SGOV",
@@ -5809,7 +5813,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:BIL": {
       "id": "US:BIL",
@@ -5833,7 +5837,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:GOVT": {
       "id": "US:GOVT",
@@ -5857,7 +5861,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:USHY": {
       "id": "US:USHY",
@@ -5881,7 +5885,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:GLD": {
       "id": "US:GLD",
@@ -5905,7 +5909,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:IAU": {
       "id": "US:IAU",
@@ -5929,7 +5933,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:VNQ": {
       "id": "US:VNQ",
@@ -5953,7 +5957,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:TIP": {
       "id": "US:TIP",
@@ -5977,7 +5981,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SCHH": {
       "id": "US:SCHH",
@@ -6001,7 +6005,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:REET": {
       "id": "US:REET",
@@ -6025,7 +6029,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:PDBC": {
       "id": "US:PDBC",
@@ -6049,7 +6053,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:DBC": {
       "id": "US:DBC",
@@ -6073,7 +6077,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:SLV": {
       "id": "US:SLV",
@@ -6097,7 +6101,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "US:COMT": {
       "id": "US:COMT",
@@ -6121,7 +6125,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02800": {
       "id": "HK:02800",
@@ -6145,7 +6149,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02828": {
       "id": "HK:02828",
@@ -6169,7 +6173,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03115": {
       "id": "HK:03115",
@@ -6193,7 +6197,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03037": {
       "id": "HK:03037",
@@ -6217,7 +6221,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02801": {
       "id": "HK:02801",
@@ -6241,7 +6245,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02825": {
       "id": "HK:02825",
@@ -6265,7 +6269,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03012": {
       "id": "HK:03012",
@@ -6289,7 +6293,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03040": {
       "id": "HK:03040",
@@ -6313,7 +6317,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03064": {
       "id": "HK:03064",
@@ -6337,7 +6341,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03104": {
       "id": "HK:03104",
@@ -6361,7 +6365,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03033": {
       "id": "HK:03033",
@@ -6385,7 +6389,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03067": {
       "id": "HK:03067",
@@ -6409,7 +6413,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02814": {
       "id": "HK:02814",
@@ -6433,7 +6437,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02807": {
       "id": "HK:02807",
@@ -6457,7 +6461,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02826": {
       "id": "HK:02826",
@@ -6481,7 +6485,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02837": {
       "id": "HK:02837",
@@ -6505,7 +6509,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03032": {
       "id": "HK:03032",
@@ -6529,7 +6533,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03088": {
       "id": "HK:03088",
@@ -6553,7 +6557,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03110": {
       "id": "HK:03110",
@@ -6577,7 +6581,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03070": {
       "id": "HK:03070",
@@ -6601,7 +6605,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03031": {
       "id": "HK:03031",
@@ -6625,7 +6629,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03116": {
       "id": "HK:03116",
@@ -6649,7 +6653,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03145": {
       "id": "HK:03145",
@@ -6673,7 +6677,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03190": {
       "id": "HK:03190",
@@ -6697,7 +6701,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02838": {
       "id": "HK:02838",
@@ -6721,7 +6725,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02823": {
       "id": "HK:02823",
@@ -6745,7 +6749,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02846": {
       "id": "HK:02846",
@@ -6769,7 +6773,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02822": {
       "id": "HK:02822",
@@ -6793,7 +6797,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02827": {
       "id": "HK:02827",
@@ -6817,7 +6821,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02832": {
       "id": "HK:02832",
@@ -6841,7 +6845,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02839": {
       "id": "HK:02839",
@@ -6865,7 +6869,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03101": {
       "id": "HK:03101",
@@ -6889,7 +6893,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03133": {
       "id": "HK:03133",
@@ -6913,7 +6917,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02806": {
       "id": "HK:02806",
@@ -6937,7 +6941,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02820": {
       "id": "HK:02820",
@@ -6961,7 +6965,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02841": {
       "id": "HK:02841",
@@ -6985,7 +6989,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02845": {
       "id": "HK:02845",
@@ -7009,7 +7013,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03069": {
       "id": "HK:03069",
@@ -7033,7 +7037,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03191": {
       "id": "HK:03191",
@@ -7057,7 +7061,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02819": {
       "id": "HK:02819",
@@ -7081,7 +7085,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02821": {
       "id": "HK:02821",
@@ -7105,7 +7109,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02840": {
       "id": "HK:02840",
@@ -7129,7 +7133,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02817": {
       "id": "HK:02817",
@@ -7153,7 +7157,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:02829": {
       "id": "HK:02829",
@@ -7177,7 +7181,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     },
     "HK:03187": {
       "id": "HK:03187",
@@ -7201,7 +7205,7 @@
       "detailSourceUrl": null,
       "detailSourceType": null,
       "metadataStatus": "official-listing-only",
-      "metadataAsOf": "2026-09-04"
+      "metadataAsOf": "2026-10-01"
     }
   }
 }
